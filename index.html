@@ -99,7 +99,7 @@ html[dir="rtl"] .screen.from-back{--enter-x:22px}
 .screen-body{padding:var(--sp-4) var(--sp-5) var(--sp-8);display:flex;flex-direction:column;gap:var(--sp-4);flex:1}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);padding:calc(env(safe-area-inset-top,0px) + var(--sp-3)) var(--sp-5) var(--sp-3);min-height:calc(60px*var(--ui));position:sticky;top:0;z-index:var(--z-sticky);background:linear-gradient(to bottom,color-mix(in srgb,var(--bg) 88%,transparent),transparent);backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm))}
 .topbar-title{font-size:calc(16px*var(--ui));font-weight:600;letter-spacing:-.01em;flex:1;text-align:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.topbar-back,.topbar-action{width:calc(44px*var(--ui));height:calc(44px*var(--ui));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;transition:transform 160ms cubic-bezier(.2,1.4,.4,1),background 180ms,box-shadow 180ms;backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));position:relative;overflow:hidden}
+.topbar-back,.topbar-action{width:max(44px,calc(44px*var(--ui)));height:max(44px,calc(44px*var(--ui)));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;transition:transform 160ms cubic-bezier(.2,1.4,.4,1),background 180ms,box-shadow 180ms;backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));position:relative;overflow:hidden}
 .topbar-back:active,.topbar-action:active{transform:scale(.9);background:var(--accent-soft)}
 .topbar-action{color:var(--accent)}
 html[dir="rtl"] .dir-flip{transform:scaleX(-1)}
@@ -154,7 +154,7 @@ html[dir="rtl"] .dir-flip{transform:scaleX(-1)}
 .badge-info{background:var(--info-bg);color:var(--info)}
 .badge-accent{background:var(--accent-soft);color:var(--accent)}
 .chips{display:flex;gap:var(--sp-2);overflow-x:auto;scrollbar-width:none;padding:2px 0}
-.chip{padding:calc(8px*var(--ui)) calc(16px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-pill);font-size:calc(13px*var(--ui));font-weight:600;white-space:nowrap;color:var(--text-2);transition:all var(--t-fast);flex-shrink:0;cursor:pointer;min-height:calc(44px*var(--ui));display:inline-flex;align-items:center}
+.chip{padding:calc(8px*var(--ui)) calc(16px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-pill);font-size:calc(13px*var(--ui));font-weight:600;white-space:nowrap;color:var(--text-2);transition:all var(--t-fast);flex-shrink:0;cursor:pointer;min-height:max(44px,calc(44px*var(--ui)));display:inline-flex;align-items:center}
 .chip[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 12px var(--accent-glow)}
 .bottom-nav{position:absolute;bottom:0;left:0;right:0;z-index:var(--z-nav);height:calc(calc(72px*var(--ui)) + var(--safe-b));padding:0 var(--sp-4) var(--safe-b);display:flex;justify-content:space-around;align-items:stretch;background:var(--glass-2);backdrop-filter:blur(var(--blur-lg)) saturate(200%);-webkit-backdrop-filter:blur(var(--blur-lg)) saturate(200%);border-top:1px solid var(--border)}
 @media (min-width:1024px){.bottom-nav{display:none}}
@@ -472,10 +472,10 @@ html[dir="rtl"] .settings-row-chev svg{transform:scaleX(-1)}
 .card-controls .btn{flex:1;min-width:0;padding:0 var(--sp-3);font-size:calc(13px*var(--ui));min-height:calc(48px*var(--ui))}
 .crypto-search-wrap{position:relative;margin-bottom:var(--sp-3)}
 .crypto-search-wrap .search-icon{position:absolute;left:calc(14px*var(--ui));top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none}
-.crypto-search-wrap input{width:100%;min-height:calc(46px*var(--ui));padding:0 calc(14px*var(--ui)) 0 calc(42px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:calc(14.5px*var(--ui));font-weight:500;color:var(--text);outline:none;transition:border-color var(--t-fast),box-shadow var(--t-normal),background var(--t-fast)}
+.crypto-search-wrap input{width:100%;min-height:max(44px,calc(46px*var(--ui)));padding:0 calc(14px*var(--ui)) 0 calc(42px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:calc(14.5px*var(--ui));font-weight:500;color:var(--text);outline:none;transition:border-color var(--t-fast),box-shadow var(--t-normal),background var(--t-fast)}
 .crypto-search-wrap input:focus{border-color:var(--accent);background:var(--glass-2);box-shadow:0 0 0 4px var(--accent-soft)}
 .crypto-sort-chips{display:flex;gap:calc(8px*var(--ui));overflow-x:auto;scrollbar-width:none;margin-bottom:var(--sp-3);padding:2px 0}
-.crypto-sort-chip{padding:calc(7px*var(--ui)) calc(14px*var(--ui));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);font-size:calc(12.5px*var(--ui));font-weight:600;color:var(--text-2);white-space:nowrap;transition:all var(--t-fast);cursor:pointer;min-height:calc(40px*var(--ui));display:inline-flex;align-items:center}
+.crypto-sort-chip{padding:calc(7px*var(--ui)) calc(14px*var(--ui));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);font-size:calc(12.5px*var(--ui));font-weight:600;color:var(--text-2);white-space:nowrap;transition:all var(--t-fast);cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
 .crypto-sort-chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .crypto-sparkline{width:calc(72px*var(--ui));height:calc(32px*var(--ui));flex-shrink:0;overflow:hidden;opacity:.9}
 .crypto-sparkline svg{width:100%;height:100%}
@@ -930,6 +930,7 @@ const TR = {
     'theme.dark':'Dark','theme.light':'Light','theme.system':'System',
     'auth.signin':'Sign in','auth.signup':'Create account','auth.username':'Email','auth.code':'Password','auth.signinTitle':'Welcome back','auth.signupTitle':'Create your YOR WALLET','auth.show':'Show','auth.hide':'Hide','auth.firstName':'First name','auth.lastName':'Last name','auth.haveAccount':'Already have an account? Sign in','auth.noAccount':'New to YOR WALLET? Create one','auth.forgot':'Forgot password?','auth.resetTitle':'Reset password','auth.resetSend':'Send reset link','auth.resetSent':'Reset email sent','auth.or':'or',
     'auth.err.empty':'Enter your email and password.','auth.err.invalid':'Incorrect email or password.','auth.err.locked':'Too many attempts. Try again in {s} s.','auth.err.unavailable':'Service unavailable. Try again.','auth.err.emailInUse':'This email is already registered.','auth.err.weak':'Password must be at least 8 characters.','auth.err.invalidEmail':'Invalid email address.','auth.err.tooMany':'Too many attempts. Try later.','auth.err.network':'Network error. Try again.','auth.err.wrongPassword':'Incorrect password.','auth.err.userNotFound':'No account with this email.','auth.err.invalidCode':'Invalid code.',
+    'errors.PIN_REQUIRED':'PIN confirmation is required','pin.createTitle':'Create your PIN','pin.createSub':'Choose a 6-digit PIN. You will need it to confirm every transfer and purchase.','pin.confirmLabel':'Confirm PIN','pin.enterTitle':'Enter your PIN','pin.enterSub':'Enter your 6-digit PIN to confirm this operation.','pin.label':'PIN','pin.ok':'Confirm','pin.cancel':'Cancel','pin.mismatch':'The two PINs do not match.','pin.weak':'This PIN is too simple. Avoid repeated or sequential digits.','pin.format':'The PIN must be exactly 6 digits.','pin.wrong':'Wrong PIN. {n} attempt(s) left.','pin.locked':'Too many attempts. Try again in {m} min.',
     'errors.INVALID_PHONE':'Invalid phone','errors.INVALID_AMOUNT':'Invalid amount','errors.INSUFFICIENT_BALANCE':'Insufficient balance','errors.INVALID_ACCOUNT':'Invalid account','errors.INVALID_ADDRESS':'Invalid address','errors.UNKNOWN_ERROR':'Something went wrong','errors.MINIMUM_AMOUNT':'Minimum amount required','errors.SELF_TRANSFER':'Cannot send to yourself','errors.RECIPIENT_NOT_FOUND':'Recipient not found','errors.SENDER_NOT_FOUND':'Sender not found','errors.DUPLICATE':'Transaction already in progress','errors.SENDER_ACCOUNT_MISSING':'Source account missing','errors.RECIPIENT_ACCOUNT_MISSING':'Recipient account missing',
     'country.title':'Where are you sending?','country.subtitle':'Select destination country','service.title':'Transfer method','service.subtitle':'Choose transfer type',
     'recog.searching':'Searching…','recog.recognized':'✓ Beneficiary recognized','recog.notfound':'New recipient','recog.linked':'LINKED NUMBER','recog.new_benef':'No name linked — receipt uses the identifier',
@@ -987,6 +988,7 @@ const TR = {
     'theme.dark':'Sombre','theme.light':'Clair','theme.system':'Système',
     'auth.signin':'Se connecter','auth.signup':'Créer un compte','auth.username':'Email','auth.code':'Mot de passe','auth.signinTitle':'Bon retour','auth.signupTitle':'Créez votre YOR WALLET','auth.show':'Afficher','auth.hide':'Masquer','auth.firstName':'Prénom','auth.lastName':'Nom','auth.haveAccount':'Déjà un compte ? Connectez-vous','auth.noAccount':'Nouveau sur YOR WALLET ? Créez un compte','auth.forgot':'Mot de passe oublié ?','auth.resetTitle':'Réinitialiser le mot de passe','auth.resetSend':'Envoyer le lien','auth.resetSent':'Email envoyé','auth.or':'ou',
     'auth.err.empty':'Renseignez email et mot de passe.','auth.err.invalid':'Email ou mot de passe incorrect.','auth.err.locked':'Trop de tentatives. Réessayez dans {s} s.','auth.err.unavailable':'Service indisponible.','auth.err.emailInUse':'Cet email est déjà utilisé.','auth.err.weak':'Mot de passe : 8 caractères minimum.','auth.err.invalidEmail':'Email invalide.','auth.err.tooMany':'Trop de tentatives. Réessayez plus tard.','auth.err.network':'Erreur réseau. Réessayez.','auth.err.wrongPassword':'Mot de passe incorrect.','auth.err.userNotFound':'Aucun compte avec cet email.','auth.err.invalidCode':'Code invalide.',
+    'errors.PIN_REQUIRED':'La confirmation par PIN est requise','pin.createTitle':'Créez votre code PIN','pin.createSub':'Choisissez un code PIN à 6 chiffres. Il sera demandé pour confirmer chaque transfert et achat.','pin.confirmLabel':'Confirmer le PIN','pin.enterTitle':'Saisissez votre PIN','pin.enterSub':'Saisissez votre code PIN à 6 chiffres pour confirmer cette opération.','pin.label':'PIN','pin.ok':'Confirmer','pin.cancel':'Annuler','pin.mismatch':'Les deux codes PIN ne correspondent pas.','pin.weak':'Ce code est trop simple. Évitez les chiffres répétés ou consécutifs.','pin.format':'Le code PIN doit contenir exactement 6 chiffres.','pin.wrong':'PIN incorrect. {n} tentative(s) restante(s).','pin.locked':'Trop de tentatives. Réessayez dans {m} min.',
     'errors.INVALID_PHONE':'Numéro invalide','errors.INVALID_AMOUNT':'Montant invalide','errors.INSUFFICIENT_BALANCE':'Solde insuffisant','errors.INVALID_ACCOUNT':'Compte invalide','errors.INVALID_ADDRESS':'Adresse invalide','errors.UNKNOWN_ERROR':'Une erreur est survenue','errors.MINIMUM_AMOUNT':'Montant minimum','errors.SELF_TRANSFER':'Impossible de s\'envoyer','errors.RECIPIENT_NOT_FOUND':'Destinataire introuvable','errors.SENDER_NOT_FOUND':'Expéditeur introuvable','errors.DUPLICATE':'Transaction en cours','errors.SENDER_ACCOUNT_MISSING':'Compte source manquant','errors.RECIPIENT_ACCOUNT_MISSING':'Compte destinataire manquant',
     'country.title':'Où envoyez-vous ?','country.subtitle':'Sélectionnez un pays','service.title':'Méthode','service.subtitle':'Choisissez le type',
     'recog.searching':'Recherche…','recog.recognized':'✓ Reconnu','recog.notfound':'Nouveau destinataire','recog.linked':'NUMÉRO LIÉ','recog.new_benef':'Aucun nom associé',
@@ -1038,6 +1040,7 @@ const TR = {
     'theme.dark':'داكن','theme.light':'فاتح','theme.system':'النظام',
     'auth.signin':'دخول','auth.signup':'إنشاء حساب','auth.username':'البريد','auth.code':'كلمة المرور','auth.signinTitle':'مرحباً بعودتك','auth.signupTitle':'أنشئ حسابك','auth.show':'إظهار','auth.hide':'إخفاء','auth.firstName':'الاسم الأول','auth.lastName':'اسم العائلة','auth.haveAccount':'لديك حساب؟ دخول','auth.noAccount':'جديد؟ أنشئ حساباً','auth.forgot':'نسيت كلمة المرور؟','auth.resetTitle':'إعادة التعيين','auth.resetSend':'إرسال الرابط','auth.resetSent':'تم الإرسال','auth.or':'أو',
     'auth.err.empty':'أدخل البيانات','auth.err.invalid':'غير صحيح','auth.err.locked':'محاولات كثيرة {s} ث','auth.err.unavailable':'غير متاح','auth.err.emailInUse':'البريد مستخدم','auth.err.weak':'8 أحرف على الأقل','auth.err.invalidEmail':'بريد غير صالح','auth.err.tooMany':'محاولات كثيرة','auth.err.network':'خطأ الشبكة','auth.err.wrongPassword':'كلمة مرور خاطئة','auth.err.userNotFound':'لا حساب','auth.err.invalidCode':'رمز خاطئ',
+    'errors.PIN_REQUIRED':'مطلوب تأكيد رمز PIN','pin.createTitle':'أنشئ رمز PIN','pin.createSub':'اختر رمز PIN من 6 أرقام. سيُطلب لتأكيد كل تحويل وشراء.','pin.confirmLabel':'تأكيد رمز PIN','pin.enterTitle':'أدخل رمز PIN','pin.enterSub':'أدخل رمز PIN المكوّن من 6 أرقام لتأكيد هذه العملية.','pin.label':'رمز PIN','pin.ok':'تأكيد','pin.cancel':'إلغاء','pin.mismatch':'الرمزان غير متطابقين.','pin.weak':'الرمز بسيط جداً. تجنّب الأرقام المكررة أو المتسلسلة.','pin.format':'يجب أن يتكوّن الرمز من 6 أرقام بالضبط.','pin.wrong':'رمز PIN خاطئ. بقيت {n} محاولة.','pin.locked':'محاولات كثيرة. أعد المحاولة بعد {m} دقيقة.',
     'errors.INVALID_PHONE':'رقم غير صالح','errors.INVALID_AMOUNT':'مبلغ غير صالح','errors.INSUFFICIENT_BALANCE':'رصيد غير كافٍ','errors.INVALID_ACCOUNT':'حساب غير صالح','errors.INVALID_ADDRESS':'عنوان غير صالح','errors.UNKNOWN_ERROR':'خطأ','errors.MINIMUM_AMOUNT':'الحد الأدنى','errors.SELF_TRANSFER':'لا يمكنك إرسال لنفسك','errors.RECIPIENT_NOT_FOUND':'غير موجود','errors.SENDER_NOT_FOUND':'المرسل','errors.DUPLICATE':'قيد التنفيذ','errors.SENDER_ACCOUNT_MISSING':'الحساب المصدر','errors.RECIPIENT_ACCOUNT_MISSING':'حساب المستفيد',
     'country.title':'إلى أين؟','country.subtitle':'اختر الدولة','service.title':'طريقة','service.subtitle':'اختر النوع',
     'recog.searching':'جارٍ البحث…','recog.recognized':'✓ تم التعرف','recog.notfound':'جديد','recog.linked':'رقم مرتبط','recog.new_benef':'لا اسم',
@@ -2082,7 +2085,7 @@ const AuthEngine = (() => {
     Runtime.bankAccounts = bankAccounts || []; Runtime.contacts = contacts || []; Runtime.beneficiaries = beneficiaries || [];
     Runtime.devices = devices || []; Runtime.sessions = sessions || [];
     Runtime.hideBalance = !!Runtime.settings.hideBalances;
-    LANG = Runtime.settings.language || LANG || 'en';
+    LANG = Runtime.settings.language || 'fr';
     return Runtime;
   }
   /* live updates: money received appears instantly, balances refresh */
@@ -2184,6 +2187,97 @@ const AuthEngine = (() => {
 /* ============================================================
    TRANSFER ENGINE — Postgres RPC (atomic debit + credit, server-authoritative)
    ============================================================ */
+const PinEngine = (() => {
+  let busy = false;
+  const unwrap = (r) => (Array.isArray(r.data) ? r.data[0] : r.data);
+  /* Modal that collects the PIN. submit(pin, pin2) -> { ok, value } | { ok:false, msg }.
+     Resolves with the value on success, or null if the user cancels. The PIN is never stored. */
+  function prompt(mode, submit){
+    return new Promise(resolve => {
+      let done = false;
+      const finish = (v) => { if (done) return; done = true; resolve(v); };
+      const create = mode === 'create';
+      const box = (id, label) => '<div class="field"><label class="field-label" for="' + id + '">' + escapeHtml(label) + '</label><div class="field-box"><input type="password" id="' + id + '" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" class="ltr" style="letter-spacing:.5em;text-align:center;font-size:calc(22px*var(--ui));outline:none;border:0;background:transparent;box-shadow:none;width:100%"></div></div>';
+      const close = R.overlay.open(
+        '<div class="h2" style="margin-bottom:8px">' + escapeHtml(t(create ? 'pin.createTitle' : 'pin.enterTitle')) + '</div>' +
+        '<p class="caption" style="margin:0 0 12px;line-height:1.55">' + escapeHtml(t(create ? 'pin.createSub' : 'pin.enterSub')) + '</p>' +
+        box('pin-a', t('pin.label')) + (create ? box('pin-b', t('pin.confirmLabel')) : '') +
+        '<div class="field-err" id="pin-err" role="alert"></div>' +
+        '<button class="btn btn-primary" id="pin-ok" type="button" style="margin-top:12px;width:100%">' + escapeHtml(t('pin.ok')) + '</button>' +
+        '<button class="btn" id="pin-cancel" type="button" style="margin-top:8px;width:100%">' + escapeHtml(t('pin.cancel')) + '</button>',
+        { kind:'modal', onClose: () => finish(null) });
+      setTimeout(() => {
+        const a = document.getElementById('pin-a'), b = document.getElementById('pin-b');
+        const ok = document.getElementById('pin-ok'), cancel = document.getElementById('pin-cancel'), err = document.getElementById('pin-err');
+        if (!a || !ok) return;
+        [a, b].forEach(el => { if (el) el.addEventListener('input', () => { el.value = el.value.replace(/\D/g, '').slice(0, 6); err.textContent = ''; }); });
+        const go = async () => {
+          if (ok.disabled) return;
+          ok.disabled = true; UIKit.loading(ok, true);
+          let r;
+          try { r = await submit(a.value, b ? b.value : null); } catch(e){ r = { ok:false, msg:t('errors.UNKNOWN_ERROR') }; }
+          UIKit.loading(ok, false); ok.disabled = false;
+          if (r && r.ok){ finish(r.value); a.value = ''; if (b) b.value = ''; close(); return; }
+          err.textContent = (r && r.msg) || t('errors.UNKNOWN_ERROR'); a.value = ''; if (b) b.value = ''; a.focus();
+        };
+        ok.onclick = go;
+        [a, b].forEach(el => { if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); go(); } }); });
+        cancel.onclick = () => { finish(null); close(); };
+        try { a.focus(); } catch(e){}
+      }, 80);
+    });
+  }
+  async function verify(pin){
+    const r = await sb.rpc('verify_pin', { p_pin: pin });
+    if (r.error) return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
+    const d = unwrap(r) || {};
+    if (d.ok && d.grant) return { ok:true, value:d.grant };
+    if (d.error === 'wrong_pin') return { ok:false, msg:tf('pin.wrong', { n: d.remaining != null ? d.remaining : 0 }) };
+    if (d.error === 'pin_locked'){
+      const mins = Math.max(1, Math.ceil((new Date(d.locked_until).getTime() - Date.now()) / 60000));
+      return { ok:false, msg:tf('pin.locked', { m: mins }) };
+    }
+    return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
+  }
+  /* Resolves { ok:true, grant } (one-time, valid ~2 min) or { ok:false, cancelled? , error? } */
+  async function authorize(){
+    if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    if (busy) return { ok:false, cancelled:true };
+    busy = true;
+    try {
+      const st = await sb.rpc('pin_status');
+      if (st.error) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      const s = unwrap(st) || {};
+      let pinForGrant = null;
+      if (!s.has_pin){
+        const created = await prompt('create', async (pin, pin2) => {
+          if (!/^[0-9]{6}$/.test(pin || '')) return { ok:false, msg:t('pin.format') };
+          if (pin !== pin2) return { ok:false, msg:t('pin.mismatch') };
+          const r = await sb.rpc('set_pin', { p_pin: pin });
+          if (r.error){
+            const m = String(r.error.message || '').toLowerCase();
+            if (m.includes('weak_pin')) return { ok:false, msg:t('pin.weak') };
+            if (m.includes('invalid_pin_format')) return { ok:false, msg:t('pin.format') };
+            if (!m.includes('pin_exists')) return { ok:false, msg:t('errors.UNKNOWN_ERROR') };
+          }
+          return { ok:true, value:pin };
+        });
+        if (!created) return { ok:false, cancelled:true };
+        const v = await verify(created);
+        if (!v.ok) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+        return { ok:true, grant:v.value };
+      }
+      const grant = await prompt('enter', (pin) => (/^[0-9]{6}$/.test(pin || '') ? verify(pin) : { ok:false, msg:t('pin.format') }));
+      if (!grant) return { ok:false, cancelled:true };
+      return { ok:true, grant };
+    } catch(e){
+      console.error(e);
+      return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    } finally { busy = false; }
+  }
+  return { authorize };
+})();
+
 const TransferEngine = (() => {
   const inflight = new Set();
   /* find_user_by_yor_id() : returns only YOR ID / display name / country / photo */
@@ -2198,7 +2292,7 @@ const TransferEngine = (() => {
              phone: '', country: r.country || 'OM', role: 'user', photo: r.photo || null };
   }
   /* idemKey is generated ONCE per review screen, so a double tap / retry replays the same request */
-  async function sendFiat({ toYorId, amount, currency, idemKey, note }){
+  async function sendFiat({ toYorId, amount, currency, idemKey, note, pinGrant }){
     if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
     const idem = idemKey || uuid();
     const lock = idem;
@@ -2207,10 +2301,11 @@ const TransferEngine = (() => {
     try {
       const { data, error } = await sb.rpc('transfer_fiat', {
         p_to_yor_id: toYorId, p_amount: Number(amount), p_currency: currency || 'OMR',
-        p_note: note || null, p_idempotency_key: idem
+        p_note: note || null, p_idempotency_key: idem, p_pin_grant: pinGrant || null
       });
       if (error){
         const m = String(error.message || '').toLowerCase();
+        if (m.includes('pin_required')) return { ok:false, error:'errors.PIN_REQUIRED' };
         if (m.includes('insufficient')) return { ok:false, error:'errors.INSUFFICIENT_BALANCE' };
         if (m.includes('recipient_not_found') || m.includes('recipient not found')) return { ok:false, error:'errors.RECIPIENT_NOT_FOUND' };
         if (m.includes('self')) return { ok:false, error:'errors.SELF_TRANSFER' };
@@ -2228,7 +2323,7 @@ const TransferEngine = (() => {
     } finally { setTimeout(() => inflight.delete(lock), 1500); }
   }
   /* International transfer: validated and recorded SERVER-SIDE (fiat_send_external). Nothing is created locally. */
-  async function sendExternal({ amount, destCurrency, provider, beneficiary, idemKey }){
+  async function sendExternal({ amount, destCurrency, provider, beneficiary, idemKey, pinGrant }){
     if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
     const idem = idemKey || uuid();
     if (inflight.has(idem)) return { ok:false, error:'errors.DUPLICATE' };
@@ -2236,10 +2331,11 @@ const TransferEngine = (() => {
     try {
       const { data, error } = await sb.rpc('fiat_send_external', {
         p_amount: Number(amount), p_dest_currency: destCurrency, p_provider: provider,
-        p_beneficiary: beneficiary, p_idempotency_key: idem
+        p_beneficiary: beneficiary, p_idempotency_key: idem, p_pin_grant: pinGrant || null
       });
       if (error){
         const m = String(error.message || '').toLowerCase();
+        if (m.includes('pin_required')) return { ok:false, error:'errors.PIN_REQUIRED' };
         if (m.includes('insufficient')) return { ok:false, error:'errors.INSUFFICIENT_BALANCE' };
         if (m.includes('missing_field')) return { ok:false, error:'errors.MISSING_FIELD' };
         if (m.includes('limit_')) return { ok:false, error:'errors.LIMIT' };
@@ -2268,6 +2364,46 @@ function blockUnsupported(){
   return true;
 }
 async function recordLocalTransaction(){ throw new Error('LEDGER_WRITE_FORBIDDEN'); }
+
+/* ============================================================
+   CRYPTO BUY — executed SERVER-SIDE by crypto_buy(): debits OMR, credits the wallet,
+   writes transaction + notification atomically. The client only sends (asset, OMR amount, idempotency key).
+   Signature verified on the database: crypto_buy(p_asset text, p_fiat_amount numeric, p_idempotency_key text) -> jsonb
+   { ok, transaction_id, reference, asset, amount, fee, fiat_amount, rate }.
+   ============================================================ */
+const CryptoBuyEngine = (() => {
+  const inflight = new Set();
+  /* Generic server call. Every money movement is done by the SQL function; the client sends only intent + idempotency key. */
+  async function call(fn, args, idemKey, pinGrant){
+    if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    const idem = idemKey || uuid();
+    if (inflight.has(idem)) return { ok:false, error:'errors.DUPLICATE' };
+    inflight.add(idem);
+    try {
+      const { data, error } = await sb.rpc(fn, Object.assign({}, args, { p_idempotency_key: idem, p_pin_grant: pinGrant || null }));
+      if (error){
+        const m = String(error.message || '').toLowerCase();
+        if (m.includes('pin_required')) return { ok:false, error:'errors.PIN_REQUIRED' };
+        if (m.includes('insufficient')) return { ok:false, error:'errors.INSUFFICIENT_BALANCE' };
+        console.error(fn, error);
+        return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      }
+      const row = Array.isArray(data) ? data[0] : data;
+      if (!row) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      try { await AuthEngine.hydrateRuntime(); } catch(e){}
+      return { ok:true, data:row };
+    } catch(e){
+      console.error(e);
+      return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    } finally { setTimeout(() => inflight.delete(idem), 1500); }
+  }
+  /* Signatures verified on the database (all return jsonb with ok, transaction_id, reference, ...):
+     crypto_buy(p_asset, p_fiat_amount, key)  crypto_sell(p_asset, p_amount, key)  crypto_swap(p_from, p_to, p_amount, key) */
+  const buy  = ({ symbol, amountOMR, idemKey, pinGrant }) => call('crypto_buy',  { p_asset: String(symbol).toUpperCase(), p_fiat_amount: Number(amountOMR) }, idemKey, pinGrant);
+  const sell = ({ symbol, amount, idemKey, pinGrant })    => call('crypto_sell', { p_asset: String(symbol).toUpperCase(), p_amount: Number(amount) }, idemKey, pinGrant);
+  const swap = ({ from, to, amount, idemKey, pinGrant })  => call('crypto_swap', { p_from: String(from).toUpperCase(), p_to: String(to).toUpperCase(), p_amount: Number(amount) }, idemKey, pinGrant);
+  return { buy, sell, swap };
+})();
 async function recordLocalReceipt(rc){
   const uid = UserContext.requireCtx().uid;
   const id = rc.id || ID.receipt();
@@ -2847,9 +2983,10 @@ function renderReceipt(){
   const cName = country ? (country[LANG] || country.en) : (r.beneficiary && r.beneficiary.networkName) ? r.beneficiary.networkName : (r.network || '—');
   const masked = ContactsEngine.mask(r.beneficiary && r.beneficiary.name);
   const amtFmt = isCrypto ? CurrencyEngine.formatCrypto(r.amount, r.asset) : CurrencyEngine.format(r.amount, r.currency || 'OMR');
-  const feeFmt = isCrypto ? CurrencyEngine.formatCrypto(r.fee || 0, r.asset) : CurrencyEngine.format(r.fee || 0, r.currency || 'OMR');
+  const costInOMR = !!(r.costOMR && isCrypto);   /* crypto BUY: fee and total are paid in OMR */
+  const feeFmt = (isCrypto && !costInOMR) ? CurrencyEngine.formatCrypto(r.fee || 0, r.asset) : CurrencyEngine.format(r.fee || 0, costInOMR ? 'OMR' : (r.currency || 'OMR'));
   const vatFmt = r.vat ? CurrencyEngine.format(r.vat, r.currency || 'OMR') : null;
-  const totalFmt = isCrypto ? CurrencyEngine.formatCrypto(r.total, r.asset) : CurrencyEngine.format(r.total, r.currency || 'OMR');
+  const totalFmt = (isCrypto && !costInOMR) ? CurrencyEngine.formatCrypto(r.total, r.asset) : CurrencyEngine.format(r.total, costInOMR ? 'OMR' : (r.currency || 'OMR'));
   const destFmt = r.destinationAmount != null ? CurrencyEngine.format(r.destinationAmount, r.destinationCurrency || (country ? country.cur : 'OMR')) : null;
   window.__YOR_LAST_RECEIPT__ = r;
   return '<div class="receipt-view">' +
@@ -3841,9 +3978,9 @@ function wire(id){
       else if (n === 'crypto') R.go('crypto');
       else if (n === 'crypto-market') R.go('crypto-market');
       else if (n === 'crypto-networks') R.go('crypto-networks');
-      else if (n === 'crypto-buy'){ if (blockUnsupported()) return; CRYPTO_FLOW.fromMain = { asset:null, fiatAmount:0, cryptoAmount:0, rate:0, fee:0 }; R.go('crypto-buy'); }
-      else if (n === 'crypto-sell'){ if (blockUnsupported()) return; CRYPTO_FLOW.sell = { asset:null, amount:0 }; R.go('crypto-sell'); }
-      else if (n === 'crypto-swap'){ if (blockUnsupported()) return; CRYPTO_FLOW.swap = { fromAsset:null, toAsset:null, amount:0 }; R.go('crypto-swap'); }
+      else if (n === 'crypto-buy'){ CRYPTO_FLOW.fromMain = { asset:null, fiatAmount:0, cryptoAmount:0, rate:0, fee:0 }; R.go('crypto-buy'); }
+      else if (n === 'crypto-sell'){ CRYPTO_FLOW.sell = { asset:null, amount:0 }; R.go('crypto-sell'); }
+      else if (n === 'crypto-swap'){ CRYPTO_FLOW.swap = { fromAsset:null, toAsset:null, amount:0 }; R.go('crypto-swap'); }
       else if (n === 'crypto-send'){ if (blockUnsupported()) return; CRYPTO_FLOW.send = { asset:null, network:null, address:null, memo:null, amount:0 }; R.go('crypto-send'); }
       else if (n === 'crypto-receive'){ if (blockUnsupported()) return; CRYPTO_FLOW.receive = { asset:null, network:null }; R.go('crypto-receive'); }
       else if (n === 'crypto-to-bank'){ if (blockUnsupported()) return; R.go('crypto-to-bank'); }
@@ -4052,8 +4189,18 @@ function wire(id){
     const kbBtn = document.getElementById('swipe-kb-confirm');
     let dragging = false, startX = 0, dx = 0, maxX = 0, midHapticDone = false;
     let _txConfirmed = false; const _idemKey = uuid();
+    function resetSwipe(){
+      dx = 0; const rtl = document.documentElement.dir === 'rtl';
+      if (rtl){ thumb.style.right = '5px'; } else { thumb.style.left = '5px'; }
+      fill.style.width = '0'; label.style.opacity = '1'; thumb.classList.remove('success');
+    }
+    let _pinBusy = false;
     async function confirmAndProceed(){
-      if (_txConfirmed) return;
+      if (_txConfirmed || _pinBusy) return;
+      _pinBusy = true;
+      const _pin = await PinEngine.authorize();
+      _pinBusy = false;
+      if (!_pin.ok){ resetSwipe(); if (_pin.error) toast(t(_pin.error), 'error'); return; }
       if (!ProcessingEngine.acquireLock()) return;
       _txConfirmed = true;
       UIKit.loading(kbBtn, true);
@@ -4068,7 +4215,7 @@ function wire(id){
             const res = await TransferEngine.sendFiat({
               toYorId: TX_STATE.beneficiary.yorId,
               amount: TX_STATE.breakdown.amount,
-              currency: 'OMR', idemKey: _idemKey,
+              currency: 'OMR', idemKey: _idemKey, pinGrant: _pin.grant,
               deviceId: UserContext.get().deviceId,
               sessionId: UserContext.get().sessionId
             });
@@ -4088,7 +4235,7 @@ function wire(id){
               destCurrency: (TX_STATE.country && (TX_STATE.country.cur || TX_STATE.country.currency)) || 'OMR',
               provider: TX_STATE.provider ? TX_STATE.provider.name : '',
               beneficiary: { firstName: b.firstName, lastName: b.lastName, phone: b.phone, country: iso, nationality: b.nationality },
-              idemKey: _idemKey
+              idemKey: _idemKey, pinGrant: _pin.grant
             });
             if (!res.ok){ toast(t(res.error), 'error'); R.go('home'); return; }
             const sv = res.data;
@@ -4157,7 +4304,7 @@ function wire(id){
     const aid = CRYPTO_FLOW.fromMain.asset;
     const asset = CRYPTO_ASSETS.find(a => a.id === aid);
     const priceUSD = asset ? CryptoMarketEngine.price(asset.symbol) : 1;
-    const priceOMR = priceUSD / 0.385;
+    const priceOMR = priceUSD / (FX_RATES.USD || 2.6008);   /* OMR per 1 crypto unit */
     const main = mainAccount();
     const input = document.getElementById('buy-fiat');
     const preview = document.getElementById('buy-preview');
@@ -4169,10 +4316,9 @@ function wire(id){
       if (v <= 0){ preview.innerHTML = ''; return; }
       if (v < 0.1){ err.textContent = t('errors.MINIMUM_AMOUNT'); return; }
       if (v > main.availableBalance){ err.textContent = t('errors.INSUFFICIENT_BALANCE'); return; }
-      const feeUSD = FeeEngine.cryptoTrade(v / 0.385 * priceUSD);
-      const cryptoGross = priceOMR > 0 ? v / priceOMR : 0;
-      const fee = priceOMR > 0 ? feeUSD / priceUSD * priceOMR : 0;
-      const cryptoNet = Math.max(0, cryptoGross - fee);
+      /* fee is a % of the OMR spent; crypto received = (spend - fee) / price. Server result is authoritative. */
+      const fee = Math.round(v * CONFIG.FEES.CRYPTO_TRADE_PCT * 1000) / 1000;
+      const cryptoNet = priceOMR > 0 ? Math.max(0, (v - fee) / priceOMR) : 0;
       preview.innerHTML = '<div class="glass-subtle" style="padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center">' +
         '<div><div class="caption">' + t('crypto.youGet') + '</div><div style="font-weight:700;margin-top:calc(4px*var(--ui))">' + CurrencyEngine.formatCrypto(cryptoNet, asset.symbol) + '</div></div>' +
         '<div style="text-align:end"><div class="caption">' + t('crypto.fee') + '</div><div style="font-size:calc(13px*var(--ui));margin-top:calc(4px*var(--ui))">' + CurrencyEngine.format(fee, 'OMR') + '</div></div></div>';
@@ -4194,7 +4340,7 @@ function wire(id){
     const asset = CRYPTO_ASSETS.find(a => a.id === aid);
     const wallet = Runtime.wallets.find(w => w.assetId === aid || w.symbol === asset.symbol);
     const priceUSD = asset ? CryptoMarketEngine.price(asset.symbol) : 1;
-    const priceOMR = priceUSD / 0.385;
+    const priceOMR = priceUSD / (FX_RATES.USD || 2.6008);
     const input = document.getElementById('sell-amt');
     const preview = document.getElementById('sell-preview');
     const err = document.getElementById('sell-err');
@@ -4206,7 +4352,7 @@ function wire(id){
       const avail = wallet ? Number(wallet.balance) : 0;
       if (v > avail){ err.textContent = t('errors.INSUFFICIENT_BALANCE'); return; }
       const grossOMR = v * priceOMR;
-      const feeOMR = FeeEngine.cryptoTrade(grossOMR / 0.385) * 0.385;
+      const feeOMR = Math.round(grossOMR * CONFIG.FEES.CRYPTO_TRADE_PCT * 1000) / 1000;
       const netOMR = Math.max(0, grossOMR - feeOMR);
       preview.innerHTML = '<div class="glass-subtle" style="padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center">' +
         '<div><div class="caption">' + t('crypto.fiatReceive') + '</div><div style="font-weight:700;margin-top:calc(4px*var(--ui))">' + CurrencyEngine.format(netOMR, 'OMR') + '</div></div>' +
@@ -4339,53 +4485,73 @@ function wire(id){
     const kbBtn = document.getElementById('swipe-kb-confirm');
     let dragging = false, startX = 0, dx = 0, maxX = 0, midHapticDone = false;
     let _cryptoConfirmed = false;
+    function resetSwipe(){
+      dx = 0; const rtl = document.documentElement.dir === 'rtl';
+      if (rtl){ thumb.style.right = '5px'; } else { thumb.style.left = '5px'; }
+      fill.style.width = '0'; label.style.opacity = '1'; thumb.classList.remove('success');
+    }
+    let _pinBusy = false;
     async function cryptoConfirm(){
-      if (blockUnsupported()) return;
-      if (_cryptoConfirmed) return;
+      if (!CRYPTO_FLOW.pending || ['BUY','SELL','SWAP'].indexOf(CRYPTO_FLOW.pending.kind) === -1){ blockUnsupported(); return; }
+      if (_cryptoConfirmed || _pinBusy) return;
+      _pinBusy = true;
+      const _pin = await PinEngine.authorize();
+      _pinBusy = false;
+      if (!_pin.ok){ resetSwipe(); if (_pin.error) toast(t(_pin.error), 'error'); return; }
       if (!ProcessingEngine.acquireLock()) return;
       _cryptoConfirmed = true;
       UIKit.loading(kbBtn, true);
       thumb.classList.add('success');
       UIKit.haptic('success');
       const p = CRYPTO_FLOW.pending;
+      const buyIdem = p.idemKey || (p.idemKey = uuid());   /* one key per review: retries replay the same request */
       R.go('processing');
       ProcessingEngine.start(async () => {
         try {
           const d = p.data;
-          const txId = ID.transaction();
-          const reference = ID.reference();
-          const tx = {
-            id: txId, reference,
-            type: p.kind === 'BUY' ? 'CRYPTO_BUY' : p.kind === 'SELL' ? 'CRYPTO_SELL' : p.kind === 'SWAP' ? 'CRYPTO_SWAP' : 'CRYPTO_SEND',
-            direction: 'OUT', status: 'SUCCESS',
-            asset: d.symbol || (d.asset ? d.asset.symbol : null),
-            amount: d.amount || 0,
-            destinationAmount: d.destinationAmount || null,
-            fee: (d.fee || 0) + (d.networkFee || 0),
-            total: d.total || d.amount,
-            network: d.network || null,
-            toAddress: d.toAddress || null,
-            memo: d.memo || null,
-            createdAt: Date.now()
-          };
-          await recordLocalTransaction(tx);
-          const receipt = {
-            id: ID.receipt(), transactionId: tx.id, status: 'SUCCESS',
-            amount: d.amount, currency: d.asset ? d.asset.symbol : 'CRYPTO',
-            asset: d.asset ? d.asset.symbol : null,
-            fee: (d.fee || 0) + (d.networkFee || 0), total: d.total || d.amount,
-            beneficiary: { name: d.toAddress ? AddressEngine.short(d.toAddress) : (d.toAssetObj ? d.toAssetObj.name : (d.asset ? d.asset.name : '—')), phone: d.toAddress || null, networkName: d.network || null },
-            network: d.network || null, reference, createdAt: Date.now()
-          };
-          await recordLocalReceipt(receipt);
+          const sym = d.symbol || (d.asset && d.asset.symbol);
+          let res;
+          if (p.kind === 'BUY') res = await CryptoBuyEngine.buy({ symbol: sym, amountOMR: d.fiatAmount, idemKey: buyIdem , pinGrant: _pin.grant });
+          else if (p.kind === 'SELL') res = await CryptoBuyEngine.sell({ symbol: sym, amount: d.amount, idemKey: buyIdem , pinGrant: _pin.grant });
+          else res = await CryptoBuyEngine.swap({ from: sym, to: d.toAssetObj && d.toAssetObj.symbol, amount: d.amount, idemKey: buyIdem , pinGrant: _pin.grant });
+          if (!res.ok){
+            toast(t(res.error || 'errors.UNKNOWN_ERROR'), 'error');
+            R.go('crypto');
+            return;
+          }
+          const row = res.data || {};
+          const ref = row.reference || ID.reference();
+          const txId = row.transaction_id || ID.transaction();
+          const name = d.asset ? d.asset.name : sym;
+          let receipt, shown;
+          if (p.kind === 'BUY'){
+            const got = Number(row.amount != null ? row.amount : d.amount);
+            shown = CurrencyEngine.formatCrypto(got, sym);
+            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: got, currency:'OMR', asset: sym,
+              fee: Number(row.fee != null ? row.fee : d.fee), total: Number(d.fiatAmount), costOMR: true,
+              beneficiary: { name, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
+          } else if (p.kind === 'SELL'){
+            const got = Number(row.fiat_received != null ? row.fiat_received : d.fiatReceived);
+            shown = CurrencyEngine.format(got, 'OMR');
+            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: Number(row.amount != null ? row.amount : d.amount), currency:'OMR', asset: sym,
+              fee: Number(row.fee != null ? row.fee : d.fee), total: got, costOMR: true,
+              beneficiary: { name, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
+          } else {
+            const to = d.toAssetObj ? d.toAssetObj.symbol : '';
+            const got = Number(row.destination_amount != null ? row.destination_amount : d.destinationAmount);
+            const amt = Number(row.amount != null ? row.amount : d.amount);
+            shown = CurrencyEngine.formatCrypto(got, to);
+            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: amt, currency: sym, asset: sym,
+              fee: Number(row.fee != null ? row.fee : d.fee), total: amt,
+              destinationAmount: got, destinationCurrency: to, exchangeRate: amt > 0 ? got / amt : null,
+              beneficiary: { name: d.toAssetObj ? d.toAssetObj.name : to, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
+          }
+          try { await recordLocalReceipt(receipt); } catch(e){ console.error(e); }
           resetCryptoFlow();
-          InAppNotif.showCall({ title: t('notif.fiat_sent'), message: receipt.beneficiary.name, amount: CurrencyEngine.formatCrypto(d.amount, (d.asset || {}).symbol || ''), status:'success' });
+          InAppNotif.showCall({ title: t(p.kind === 'BUY' ? 'crypto.reviewBuy' : p.kind === 'SELL' ? 'crypto.reviewSell' : 'crypto.reviewSwap'), message: name, amount: shown, status:'success' });
           R.go('receipt');
-        } catch(e){
-          console.error(e);
-          toast(t('errors.UNKNOWN_ERROR'), 'error');
-          R.go('crypto');
-        }
+          return;
+        } catch(e){ console.error(e); toast(t('errors.UNKNOWN_ERROR'), 'error'); R.go('crypto'); return; }
       });
     }
     if (kbBtn) kbBtn.onclick = cryptoConfirm;
@@ -4494,7 +4660,7 @@ function wire(id){
     if (!asset || !acc){ R.go('crypto-to-bank'); return; }
     const priceUSD = CryptoMarketEngine.price(asset.symbol);
     const FX = FX_RATES[acc.currency] || 1;
-    const priceInCurr = priceUSD / 0.385 * (1 / (FX_RATES['USD'] || 1)) * FX;
+    const priceInCurr = (priceUSD / (FX_RATES.USD || 2.6008)) * FX;
     const wallet = Runtime.wallets.find(w => (w.assetId === f.asset || w.symbol === asset.symbol) && w.network === f.network);
     const avail = wallet ? Number(wallet.balance) : 0;
     const amtInput = document.getElementById('tobank-amount');
@@ -5089,7 +5255,7 @@ function boot(){
       setTimeout(() => {
         const sp = document.getElementById('splash');
         if (sp){ sp.classList.add('is-hidden'); setTimeout(() => { sp.style.display = 'none'; }, 600); }
-        LANG = (Runtime.settings && Runtime.settings.language) || 'en';
+        LANG = (Runtime.settings && Runtime.settings.language) || 'fr';
         applyI18n();
         applyTheme((Runtime.settings && Runtime.settings.theme) || 'dark');
         renderSidebar();
@@ -5099,13 +5265,16 @@ function boot(){
       return;
     }
     if (signedIn){
-      LANG = (Runtime.settings && Runtime.settings.language) || 'en';
+      LANG = (Runtime.settings && Runtime.settings.language) || 'fr';
       applyI18n();
       applyTheme((Runtime.settings && Runtime.settings.theme) || 'dark');
       renderSidebar();
       R.go('home', { reset:true, force:true });
     } else {
       resetRuntime();
+      LANG = 'fr';                 /* nothing from the previous user survives on the login screen */
+      applyI18n();
+      applyTheme('dark');
       renderSidebar();
       R.go('login', { reset:true, force:true });
     }
