@@ -99,7 +99,7 @@ html[dir="rtl"] .screen.from-back{--enter-x:22px}
 .screen-body{padding:var(--sp-4) var(--sp-5) var(--sp-8);display:flex;flex-direction:column;gap:var(--sp-4);flex:1}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);padding:calc(env(safe-area-inset-top,0px) + var(--sp-3)) var(--sp-5) var(--sp-3);min-height:calc(60px*var(--ui));position:sticky;top:0;z-index:var(--z-sticky);background:linear-gradient(to bottom,color-mix(in srgb,var(--bg) 88%,transparent),transparent);backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm))}
 .topbar-title{font-size:calc(16px*var(--ui));font-weight:600;letter-spacing:-.01em;flex:1;text-align:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.topbar-back,.topbar-action{width:calc(44px*var(--ui));height:calc(44px*var(--ui));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;transition:transform 160ms cubic-bezier(.2,1.4,.4,1),background 180ms,box-shadow 180ms;backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));position:relative;overflow:hidden}
+.topbar-back,.topbar-action{width:max(44px,calc(44px*var(--ui)));height:max(44px,calc(44px*var(--ui)));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;transition:transform 160ms cubic-bezier(.2,1.4,.4,1),background 180ms,box-shadow 180ms;backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));position:relative;overflow:hidden}
 .topbar-back:active,.topbar-action:active{transform:scale(.9);background:var(--accent-soft)}
 .topbar-action{color:var(--accent)}
 html[dir="rtl"] .dir-flip{transform:scaleX(-1)}
@@ -154,7 +154,7 @@ html[dir="rtl"] .dir-flip{transform:scaleX(-1)}
 .badge-info{background:var(--info-bg);color:var(--info)}
 .badge-accent{background:var(--accent-soft);color:var(--accent)}
 .chips{display:flex;gap:var(--sp-2);overflow-x:auto;scrollbar-width:none;padding:2px 0}
-.chip{padding:calc(8px*var(--ui)) calc(16px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-pill);font-size:calc(13px*var(--ui));font-weight:600;white-space:nowrap;color:var(--text-2);transition:all var(--t-fast);flex-shrink:0;cursor:pointer;min-height:calc(44px*var(--ui));display:inline-flex;align-items:center}
+.chip{padding:calc(8px*var(--ui)) calc(16px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-pill);font-size:calc(13px*var(--ui));font-weight:600;white-space:nowrap;color:var(--text-2);transition:all var(--t-fast);flex-shrink:0;cursor:pointer;min-height:max(44px,calc(44px*var(--ui)));display:inline-flex;align-items:center}
 .chip[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 12px var(--accent-glow)}
 .bottom-nav{position:absolute;bottom:0;left:0;right:0;z-index:var(--z-nav);height:calc(calc(72px*var(--ui)) + var(--safe-b));padding:0 var(--sp-4) var(--safe-b);display:flex;justify-content:space-around;align-items:stretch;background:var(--glass-2);backdrop-filter:blur(var(--blur-lg)) saturate(200%);-webkit-backdrop-filter:blur(var(--blur-lg)) saturate(200%);border-top:1px solid var(--border)}
 @media (min-width:1024px){.bottom-nav{display:none}}
@@ -472,10 +472,10 @@ html[dir="rtl"] .settings-row-chev svg{transform:scaleX(-1)}
 .card-controls .btn{flex:1;min-width:0;padding:0 var(--sp-3);font-size:calc(13px*var(--ui));min-height:calc(48px*var(--ui))}
 .crypto-search-wrap{position:relative;margin-bottom:var(--sp-3)}
 .crypto-search-wrap .search-icon{position:absolute;left:calc(14px*var(--ui));top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none}
-.crypto-search-wrap input{width:100%;min-height:calc(46px*var(--ui));padding:0 calc(14px*var(--ui)) 0 calc(42px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:calc(14.5px*var(--ui));font-weight:500;color:var(--text);outline:none;transition:border-color var(--t-fast),box-shadow var(--t-normal),background var(--t-fast)}
+.crypto-search-wrap input{width:100%;min-height:max(44px,calc(46px*var(--ui)));padding:0 calc(14px*var(--ui)) 0 calc(42px*var(--ui));background:var(--glass-1);border:1.5px solid var(--border);border-radius:var(--r-md);font-size:calc(14.5px*var(--ui));font-weight:500;color:var(--text);outline:none;transition:border-color var(--t-fast),box-shadow var(--t-normal),background var(--t-fast)}
 .crypto-search-wrap input:focus{border-color:var(--accent);background:var(--glass-2);box-shadow:0 0 0 4px var(--accent-soft)}
 .crypto-sort-chips{display:flex;gap:calc(8px*var(--ui));overflow-x:auto;scrollbar-width:none;margin-bottom:var(--sp-3);padding:2px 0}
-.crypto-sort-chip{padding:calc(7px*var(--ui)) calc(14px*var(--ui));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);font-size:calc(12.5px*var(--ui));font-weight:600;color:var(--text-2);white-space:nowrap;transition:all var(--t-fast);cursor:pointer;min-height:calc(40px*var(--ui));display:inline-flex;align-items:center}
+.crypto-sort-chip{padding:calc(7px*var(--ui)) calc(14px*var(--ui));border-radius:var(--r-pill);background:var(--glass-1);border:1px solid var(--border);font-size:calc(12.5px*var(--ui));font-weight:600;color:var(--text-2);white-space:nowrap;transition:all var(--t-fast);cursor:pointer;min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center}
 .crypto-sort-chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .crypto-sparkline{width:calc(72px*var(--ui));height:calc(32px*var(--ui));flex-shrink:0;overflow:hidden;opacity:.9}
 .crypto-sparkline svg{width:100%;height:100%}
@@ -687,6 +687,16 @@ button,[role="button"],a[data-nav],.nav-item,.topbar-back,.topbar-action,.field-
 
 .co-ring{inset:-13%}
 .quick:has(>:nth-child(5):last-child){grid-template-columns:repeat(5,1fr)}
+
+.faq-item{padding:0;overflow:hidden}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);font-weight:600;min-height:calc(52px*var(--ui))}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-chev{display:inline-flex;transition:transform .25s var(--ease-out);opacity:.7}
+.dir-flip-faq{}
+.faq-item[open] .faq-chev{transform:rotate(90deg)}
+.faq-a{padding:0 var(--sp-5) var(--sp-5);color:var(--text-2);line-height:1.6;font-size:calc(14px*var(--ui))}
+html[dir="rtl"] .faq-chev{transform:scaleX(-1)}
+html[dir="rtl"] .faq-item[open] .faq-chev{transform:scaleX(-1) rotate(90deg)}
 </style>
 </head>
 <body>
@@ -903,7 +913,19 @@ const TR = {
     'settings.txConfirm':'Transaction confirmation','settings.txConfirmDesc':'Require a confirmation before each send',
     'settings.vibration':'Vibration','settings.vibrationDesc':'Haptic feedback on actions','settings.primaryCurrency':'Primary currency','settings.primaryCurrencyDesc':'Default currency',
     'settings.personalInfo':'Personal information','settings.personalInfoDesc':'Name, phone, email','settings.kycDesc':'Your identity verification','settings.limitsDesc':'Daily and per-transaction limits',
+    'settings.privacy':'Privacy','settings.privacyDesc':'How your data is used','settings.help':'Help & support','settings.helpDesc':'FAQ and contact',
+    'privacy.title':'Privacy','privacy.intro':'Your privacy matters. Here is how YOR WALLET handles your information.',
+    'privacy.p1t':'Your data','privacy.p1':'We store only what is needed to run your account: your profile, balances, transactions and linked numbers.',
+    'privacy.p2t':'Security','privacy.p2':'Your session is protected and sensitive actions can require confirmation. We never ask for your password by e-mail.',
+    'privacy.p3t':'E-mails','privacy.p3':'We send e-mails only for your account: welcome, transaction receipts and security alerts.',
+    'help.title':'Help & support','help.intro':'Find quick answers or write to our team.',
+    'help.q1':'How do I send money?','help.a1':'Open Home, tap Send, choose the destination, enter the details and amount, then swipe to confirm.',
+    'help.q2':'Where can I see my receipts?','help.a2':'Open History and tap a transaction to see its full receipt.',
+    'help.q3':'I did not recognise an activity','help.a3':'Change your password and contact support immediately using the button below.',
+    'help.contact':'Contact support','help.contactDesc':'We reply by e-mail.',
+    'about.title':'About','about.version':'Version','about.company':'YOR WALLET is a service of Yor Digital Finance.','about.rights':'All rights reserved.',
     'settings.about':'About','settings.aboutDesc':'App version','settings.sectionPreferences':'Preferences','settings.sectionSecurity':'Security','settings.sectionFinance':'Finance','settings.sectionContacts':'Contacts','settings.sectionAccount':'Account','settings.sectionProfile':'Profile',
+    'identifier.firstName':'Beneficiary first name','identifier.lastName':'Beneficiary last name','identifier.nationality':'Beneficiary nationality','errors.MISSING_FIELD':'Please fill in all required fields.','errors.LIMIT':'Transfer limit exceeded.',
     'settings.on':'On','settings.off':'Off','settings.languages_list':'English · Français · العربية',
     'theme.dark':'Dark','theme.light':'Light','theme.system':'System',
     'auth.signin':'Sign in','auth.signup':'Create account','auth.username':'Email','auth.code':'Password','auth.signinTitle':'Welcome back','auth.signupTitle':'Create your YOR WALLET','auth.show':'Show','auth.hide':'Hide','auth.firstName':'First name','auth.lastName':'Last name','auth.haveAccount':'Already have an account? Sign in','auth.noAccount':'New to YOR WALLET? Create one','auth.forgot':'Forgot password?','auth.resetTitle':'Reset password','auth.resetSend':'Send reset link','auth.resetSent':'Reset email sent','auth.or':'or',
@@ -948,7 +970,19 @@ const TR = {
     'settings.title':'Paramètres','settings.language':'Langue','settings.theme':'Thème','settings.notifs':'Notifications','settings.biometric':'Biométrie','settings.banks':'Comptes bancaires','settings.networks':'Réseaux','settings.contacts':'Numéros liés',
     'settings.notifsDesc':'Alertes de transactions','settings.biometricDesc':'Face ID / empreinte','settings.txConfirm':'Confirmation','settings.txConfirmDesc':'Confirmation avant chaque envoi','settings.vibration':'Vibration','settings.vibrationDesc':'Retour haptique','settings.primaryCurrency':'Devise principale','settings.primaryCurrencyDesc':'Devise par défaut',
     'settings.personalInfo':'Informations personnelles','settings.personalInfoDesc':'Nom, téléphone, email','settings.kycDesc':'Vérification d\'identité','settings.limitsDesc':'Limites quotidiennes',
+    'settings.privacy':'Confidentialité','settings.privacyDesc':'Comment vos données sont utilisées','settings.help':'Aide et support','settings.helpDesc':'FAQ et contact',
+    'privacy.title':'Confidentialité','privacy.intro':'Votre vie privée compte. Voici comment YOR WALLET traite vos informations.',
+    'privacy.p1t':'Vos données','privacy.p1':'Nous conservons uniquement ce qui est nécessaire au fonctionnement de votre compte : profil, soldes, transactions et numéros liés.',
+    'privacy.p2t':'Sécurité','privacy.p2':'Votre session est protégée et les actions sensibles peuvent demander une confirmation. Nous ne demandons jamais votre mot de passe par e-mail.',
+    'privacy.p3t':'E-mails','privacy.p3':'Nous envoyons des e-mails uniquement liés à votre compte : bienvenue, reçus de transaction et alertes de sécurité.',
+    'help.title':'Aide et support','help.intro':'Trouvez des réponses rapides ou écrivez à notre équipe.',
+    'help.q1':'Comment envoyer de l\'argent ?','help.a1':'Ouvrez Accueil, touchez Envoyer, choisissez la destination, saisissez les informations et le montant, puis glissez pour confirmer.',
+    'help.q2':'Où voir mes reçus ?','help.a2':'Ouvrez Historique et touchez une transaction pour voir son reçu complet.',
+    'help.q3':'Je ne reconnais pas une activité','help.a3':'Changez votre mot de passe et contactez immédiatement le support avec le bouton ci-dessous.',
+    'help.contact':'Contacter le support','help.contactDesc':'Nous répondons par e-mail.',
+    'about.title':'À propos','about.version':'Version','about.company':'YOR WALLET est un service de Yor Digital Finance.','about.rights':'Tous droits réservés.',
     'settings.about':'À propos','settings.aboutDesc':'Version de l\'application','settings.sectionPreferences':'Préférences','settings.sectionSecurity':'Sécurité','settings.sectionFinance':'Finance','settings.sectionContacts':'Contacts','settings.sectionAccount':'Compte','settings.sectionProfile':'Profil',
+    'identifier.firstName':'Prénom du bénéficiaire','identifier.lastName':'Nom du bénéficiaire','identifier.nationality':'Nationalité du bénéficiaire','errors.MISSING_FIELD':'Veuillez remplir tous les champs obligatoires.','errors.LIMIT':'Limite de transfert dépassée.',
     'settings.on':'Activé','settings.off':'Désactivé','settings.languages_list':'English · Français · العربية',
     'theme.dark':'Sombre','theme.light':'Clair','theme.system':'Système',
     'auth.signin':'Se connecter','auth.signup':'Créer un compte','auth.username':'Email','auth.code':'Mot de passe','auth.signinTitle':'Bon retour','auth.signupTitle':'Créez votre YOR WALLET','auth.show':'Afficher','auth.hide':'Masquer','auth.firstName':'Prénom','auth.lastName':'Nom','auth.haveAccount':'Déjà un compte ? Connectez-vous','auth.noAccount':'Nouveau sur YOR WALLET ? Créez un compte','auth.forgot':'Mot de passe oublié ?','auth.resetTitle':'Réinitialiser le mot de passe','auth.resetSend':'Envoyer le lien','auth.resetSent':'Email envoyé','auth.or':'ou',
@@ -987,7 +1021,19 @@ const TR = {
     'profile.profileSection':'الملف','profile.currentProfile':'الملف الحالي','profile.createProfile':'حساب جديد','profile.switchTo':'تبديل','profile.deleteProfile':'حذف','profile.deleteDesc':'يحذف هذا الحساب فقط','profile.signInAdmin':'دخول كمسؤول','profile.signInAdminDesc':'الدخول إلى حساب المسؤول','profile.exitAdmin':'خروج','profile.exitAdminDesc':'العودة إلى حسابك',
     'settings.title':'الإعدادات','settings.language':'اللغة','settings.theme':'المظهر','settings.notifs':'الإشعارات','settings.biometric':'البصمة','settings.banks':'الحسابات','settings.networks':'الشبكات','settings.contacts':'أرقام مرتبطة',
     'settings.notifsDesc':'تنبيهات','settings.biometricDesc':'بصمة','settings.txConfirm':'تأكيد','settings.txConfirmDesc':'تأكيد قبل الإرسال','settings.vibration':'الاهتزاز','settings.vibrationDesc':'ردود لمسية','settings.primaryCurrency':'العملة الأساسية','settings.primaryCurrencyDesc':'العملة الافتراضية',
-    'settings.personalInfo':'المعلومات','settings.personalInfoDesc':'الاسم، الهاتف','settings.kycDesc':'التحقق','settings.limitsDesc':'الحدود','settings.about':'حول','settings.aboutDesc':'الإصدار','settings.sectionPreferences':'التفضيلات','settings.sectionSecurity':'الأمان','settings.sectionFinance':'المالية','settings.sectionContacts':'جهات الاتصال','settings.sectionAccount':'الحساب','settings.sectionProfile':'الملف',
+    'settings.personalInfo':'المعلومات','settings.personalInfoDesc':'الاسم، الهاتف','settings.kycDesc':'التحقق','settings.limitsDesc':'الحدود','settings.privacy':'الخصوصية','settings.privacyDesc':'كيف نستخدم بياناتك','settings.help':'المساعدة والدعم','settings.helpDesc':'الأسئلة الشائعة والتواصل',
+    'privacy.title':'الخصوصية','privacy.intro':'خصوصيتك مهمة. هكذا يتعامل YOR WALLET مع معلوماتك.',
+    'privacy.p1t':'بياناتك','privacy.p1':'نحتفظ فقط بما يلزم لتشغيل حسابك: ملفك الشخصي وأرصدتك ومعاملاتك والأرقام المرتبطة.',
+    'privacy.p2t':'الأمان','privacy.p2':'جلستك محمية وقد تتطلب العمليات الحساسة تأكيداً. لن نطلب كلمة مرورك عبر البريد الإلكتروني أبداً.',
+    'privacy.p3t':'البريد الإلكتروني','privacy.p3':'نرسل رسائل بريد إلكتروني متعلقة بحسابك فقط: الترحيب وإيصالات العمليات وتنبيهات الأمان.',
+    'help.title':'المساعدة والدعم','help.intro':'اعثر على إجابات سريعة أو راسل فريقنا.',
+    'help.q1':'كيف أرسل الأموال؟','help.a1':'افتح الرئيسية، اضغط إرسال، اختر الوجهة، أدخل البيانات والمبلغ، ثم اسحب للتأكيد.',
+    'help.q2':'أين أرى إيصالاتي؟','help.a2':'افتح السجل واضغط على أي عملية لعرض إيصالها الكامل.',
+    'help.q3':'لم أتعرف على نشاط في حسابي','help.a3':'غيّر كلمة مرورك وتواصل مع الدعم فوراً عبر الزر أدناه.',
+    'help.contact':'التواصل مع الدعم','help.contactDesc':'نرد عبر البريد الإلكتروني.',
+    'about.title':'حول','about.version':'الإصدار','about.company':'YOR WALLET خدمة من Yor Digital Finance.','about.rights':'جميع الحقوق محفوظة.',
+    'settings.about':'حول','settings.aboutDesc':'الإصدار','settings.sectionPreferences':'التفضيلات','settings.sectionSecurity':'الأمان','settings.sectionFinance':'المالية','settings.sectionContacts':'جهات الاتصال','settings.sectionAccount':'الحساب','settings.sectionProfile':'الملف',
+    'identifier.firstName':'الاسم الأول للمستفيد','identifier.lastName':'اسم العائلة للمستفيد','identifier.nationality':'جنسية المستفيد','errors.MISSING_FIELD':'يرجى ملء جميع الحقول المطلوبة.','errors.LIMIT':'تم تجاوز حد التحويل.',
     'settings.on':'مفعّل','settings.off':'معطّل','settings.languages_list':'English · Français · العربية',
     'theme.dark':'داكن','theme.light':'فاتح','theme.system':'النظام',
     'auth.signin':'دخول','auth.signup':'إنشاء حساب','auth.username':'البريد','auth.code':'كلمة المرور','auth.signinTitle':'مرحباً بعودتك','auth.signupTitle':'أنشئ حسابك','auth.show':'إظهار','auth.hide':'إخفاء','auth.firstName':'الاسم الأول','auth.lastName':'اسم العائلة','auth.haveAccount':'لديك حساب؟ دخول','auth.noAccount':'جديد؟ أنشئ حساباً','auth.forgot':'نسيت كلمة المرور؟','auth.resetTitle':'إعادة التعيين','auth.resetSend':'إرسال الرابط','auth.resetSent':'تم الإرسال','auth.or':'أو',
@@ -1728,6 +1774,8 @@ const IC = {
   sparkle:'<path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l4 4M15 15l4 4M5 19l4-4M15 9l4-4"/>',
   trash:'<path d="M3 6h18M8 6V4h8v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/>',
   info:'<circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8M12 17h.01"/>',
   vibrate:'<rect x="8" y="3" width="8" height="18" rx="2"/><path d="M3 8v8M21 8v8"/>',
   contact:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/><circle cx="19" cy="6" r="2.5" fill="currentColor" stroke="none"/>',
   device:'<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
@@ -1835,10 +1883,10 @@ const R = (() => {
     'crypto-to-bank-amount':'crypto-to-bank-account', 'crypto-bank-review':'crypto-to-bank-amount',
     'country-select':'home', 'service-select':'country-select', 'identifier-input':'service-select',
     'tx-amount':'identifier-input', 'tx-review':'tx-amount', 'receipt':'home',
-    'devices':'settings', 'sessions':'settings', 'history':'home'
+    'devices':'settings', 'sessions':'settings', 'privacy':'settings', 'help':'settings', 'about':'settings', 'history':'home'
   };
   const NAV_KEYS = {
-    'home':'home','history':'history','cards':'cards','profile':'profile','settings':'settings','banks':'banks','banks-add':'banks',
+    'home':'home','history':'history','cards':'cards','profile':'profile','settings':'settings','banks':'banks','banks-add':'banks','privacy':'settings','help':'settings','about':'settings',
     'crypto':'crypto','crypto-market':'crypto','crypto-networks':'crypto','crypto-spot':'crypto',
     'crypto-buy':'crypto','crypto-buy-amount':'crypto','crypto-sell':'crypto','crypto-sell-amount':'crypto',
     'crypto-swap':'crypto','crypto-swap-to':'crypto','crypto-swap-amount':'crypto',
@@ -2034,7 +2082,7 @@ const AuthEngine = (() => {
     Runtime.bankAccounts = bankAccounts || []; Runtime.contacts = contacts || []; Runtime.beneficiaries = beneficiaries || [];
     Runtime.devices = devices || []; Runtime.sessions = sessions || [];
     Runtime.hideBalance = !!Runtime.settings.hideBalances;
-    LANG = Runtime.settings.language || LANG || 'en';
+    LANG = Runtime.settings.language || 'fr';
     return Runtime;
   }
   /* live updates: money received appears instantly, balances refresh */
@@ -2103,7 +2151,8 @@ const AuthEngine = (() => {
     try {
       const { data, error } = await sb.auth.signUp({
         email: String(email).trim(), password: String(password),
-        options: { data: { first_name: (firstName || '').trim(), last_name: (lastName || '').trim() } }
+        options: { data: { first_name: (firstName || '').trim(), last_name: (lastName || '').trim(),
+          language: (['fr','en','ar'].indexOf(LANG) >= 0 ? LANG : (['fr','ar'].filter(l => String(navigator.language || '').toLowerCase().indexOf(l) === 0)[0] || 'en')) } }
       });
       if (error) return { ok:false, error: errorKey(error) };
       /* e-mail confirmation enabled => no session yet */
@@ -2178,7 +2227,36 @@ const TransferEngine = (() => {
       return { ok:false, error:'errors.UNKNOWN_ERROR' };
     } finally { setTimeout(() => inflight.delete(lock), 1500); }
   }
-  return { resolveYorId, sendFiat };
+  /* International transfer: validated and recorded SERVER-SIDE (fiat_send_external). Nothing is created locally. */
+  async function sendExternal({ amount, destCurrency, provider, beneficiary, idemKey }){
+    if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    const idem = idemKey || uuid();
+    if (inflight.has(idem)) return { ok:false, error:'errors.DUPLICATE' };
+    inflight.add(idem);
+    try {
+      const { data, error } = await sb.rpc('fiat_send_external', {
+        p_amount: Number(amount), p_dest_currency: destCurrency, p_provider: provider,
+        p_beneficiary: beneficiary, p_idempotency_key: idem
+      });
+      if (error){
+        const m = String(error.message || '').toLowerCase();
+        if (m.includes('insufficient')) return { ok:false, error:'errors.INSUFFICIENT_BALANCE' };
+        if (m.includes('missing_field')) return { ok:false, error:'errors.MISSING_FIELD' };
+        if (m.includes('limit_')) return { ok:false, error:'errors.LIMIT' };
+        console.error('fiat_send_external', error);
+        return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      }
+      if (!data || !data.transaction_id) return { ok:false, error:'errors.DUPLICATE' };
+      try { await AuthEngine.hydrateRuntime(); } catch(e){}
+      return { ok:true, data:{ transactionId: data.transaction_id, reference: data.reference, status: data.status,
+        amount: data.amount, fee: data.fee, vat: data.vat, total: data.total,
+        exchangeRate: data.exchange_rate, destinationAmount: data.destination_amount, destinationCurrency: data.destination_currency } };
+    } catch(e){
+      console.error(e);
+      return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    } finally { setTimeout(() => inflight.delete(idem), 1500); }
+  }
+  return { resolveYorId, sendFiat, sendExternal };
 })();
 
 /* ============================================================
@@ -2190,6 +2268,45 @@ function blockUnsupported(){
   return true;
 }
 async function recordLocalTransaction(){ throw new Error('LEDGER_WRITE_FORBIDDEN'); }
+
+/* ============================================================
+   CRYPTO BUY — executed SERVER-SIDE by crypto_buy(): debits OMR, credits the wallet,
+   writes transaction + notification atomically. The client only sends (asset, OMR amount, idempotency key).
+   Signature verified on the database: crypto_buy(p_asset text, p_fiat_amount numeric, p_idempotency_key text) -> jsonb
+   { ok, transaction_id, reference, asset, amount, fee, fiat_amount, rate }.
+   ============================================================ */
+const CryptoBuyEngine = (() => {
+  const inflight = new Set();
+  /* Generic server call. Every money movement is done by the SQL function; the client sends only intent + idempotency key. */
+  async function call(fn, args, idemKey){
+    if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    const idem = idemKey || uuid();
+    if (inflight.has(idem)) return { ok:false, error:'errors.DUPLICATE' };
+    inflight.add(idem);
+    try {
+      const { data, error } = await sb.rpc(fn, Object.assign({}, args, { p_idempotency_key: idem }));
+      if (error){
+        const m = String(error.message || '').toLowerCase();
+        if (m.includes('insufficient')) return { ok:false, error:'errors.INSUFFICIENT_BALANCE' };
+        console.error(fn, error);
+        return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      }
+      const row = Array.isArray(data) ? data[0] : data;
+      if (!row) return { ok:false, error:'errors.UNKNOWN_ERROR' };
+      try { await AuthEngine.hydrateRuntime(); } catch(e){}
+      return { ok:true, data:row };
+    } catch(e){
+      console.error(e);
+      return { ok:false, error:'errors.UNKNOWN_ERROR' };
+    } finally { setTimeout(() => inflight.delete(idem), 1500); }
+  }
+  /* Signatures verified on the database (all return jsonb with ok, transaction_id, reference, ...):
+     crypto_buy(p_asset, p_fiat_amount, key)  crypto_sell(p_asset, p_amount, key)  crypto_swap(p_from, p_to, p_amount, key) */
+  const buy  = ({ symbol, amountOMR, idemKey }) => call('crypto_buy',  { p_asset: String(symbol).toUpperCase(), p_fiat_amount: Number(amountOMR) }, idemKey);
+  const sell = ({ symbol, amount, idemKey })    => call('crypto_sell', { p_asset: String(symbol).toUpperCase(), p_amount: Number(amount) }, idemKey);
+  const swap = ({ from, to, amount, idemKey })  => call('crypto_swap', { p_from: String(from).toUpperCase(), p_to: String(to).toUpperCase(), p_amount: Number(amount) }, idemKey);
+  return { buy, sell, swap };
+})();
 async function recordLocalReceipt(rc){
   const uid = UserContext.requireCtx().uid;
   const id = rc.id || ID.receipt();
@@ -2639,6 +2756,22 @@ function renderYorIdSearch(){
       '<button class="btn btn-primary" id="yor-id-next" disabled style="margin-top:calc(14px*var(--ui))">' + t('action.continue') + '</button>' +
     '</div>';
 }
+function benExtraFields(){
+  const f = (id, key) => '<div class="field"><label class="field-label" for="' + id + '">' + escapeHtml(t(key)) + '</label><div class="field-box"><input type="text" id="' + id + '" autocomplete="off" maxlength="60"></div></div>';
+  return f('ben-first', 'identifier.firstName') + f('ben-last', 'identifier.lastName') + f('ben-nat', 'identifier.nationality') +
+         '<div class="field-err" id="ben-err" role="alert"></div>';
+}
+/* All three are mandatory: returns null (and shows a translated error) if one is missing. */
+function readBenExtra(){
+  const v = id => ((document.getElementById(id) || {}).value || '').trim();
+  const x = { firstName: v('ben-first'), lastName: v('ben-last'), nationality: v('ben-nat') };
+  if (!x.firstName || !x.lastName || !x.nationality){
+    const e = document.getElementById('ben-err'); if (e) e.textContent = t('errors.MISSING_FIELD');
+    UIKit.haptic && UIKit.haptic('error');
+    return null;
+  }
+  return x;
+}
 function renderIdentifierInput(){
   const iso = TX_STATE.country && TX_STATE.country.iso;
   const svcId = TX_STATE.serviceId;
@@ -2668,7 +2801,7 @@ function renderIdentifierInput(){
         '</div>' +
         '<div class="field-err" id="id-err"></div></div>'
       ) +
-      '<div id="id-recog"></div>' +
+      '<div id="id-recog"></div>' + benExtraFields() +
       '<button class="btn btn-primary" id="id-next" disabled style="margin-top:calc(14px*var(--ui))">' + t('action.continue') + '</button>' +
     '</div>';
 }
@@ -2753,9 +2886,10 @@ function renderReceipt(){
   const cName = country ? (country[LANG] || country.en) : (r.beneficiary && r.beneficiary.networkName) ? r.beneficiary.networkName : (r.network || '—');
   const masked = ContactsEngine.mask(r.beneficiary && r.beneficiary.name);
   const amtFmt = isCrypto ? CurrencyEngine.formatCrypto(r.amount, r.asset) : CurrencyEngine.format(r.amount, r.currency || 'OMR');
-  const feeFmt = isCrypto ? CurrencyEngine.formatCrypto(r.fee || 0, r.asset) : CurrencyEngine.format(r.fee || 0, r.currency || 'OMR');
+  const costInOMR = !!(r.costOMR && isCrypto);   /* crypto BUY: fee and total are paid in OMR */
+  const feeFmt = (isCrypto && !costInOMR) ? CurrencyEngine.formatCrypto(r.fee || 0, r.asset) : CurrencyEngine.format(r.fee || 0, costInOMR ? 'OMR' : (r.currency || 'OMR'));
   const vatFmt = r.vat ? CurrencyEngine.format(r.vat, r.currency || 'OMR') : null;
-  const totalFmt = isCrypto ? CurrencyEngine.formatCrypto(r.total, r.asset) : CurrencyEngine.format(r.total, r.currency || 'OMR');
+  const totalFmt = (isCrypto && !costInOMR) ? CurrencyEngine.formatCrypto(r.total, r.asset) : CurrencyEngine.format(r.total, costInOMR ? 'OMR' : (r.currency || 'OMR'));
   const destFmt = r.destinationAmount != null ? CurrencyEngine.format(r.destinationAmount, r.destinationCurrency || (country ? country.cur : 'OMR')) : null;
   window.__YOR_LAST_RECEIPT__ = r;
   return '<div class="receipt-view">' +
@@ -3009,7 +3143,9 @@ function renderSettings(){
       '<div class="settings-row-body"><div class="settings-row-title">YOR ID</div><div class="settings-row-sub">Tap to copy</div></div>' +
       '<span class="settings-value ltr">' + escapeHtml(Runtime.ctx.yorId || '') + '</span>' +
     '</div>' +
-    '<div class="settings-row" style="cursor:default"><div class="tile">' + icon('info', 20) + '</div><div class="settings-row-body"><div class="settings-row-title">' + t('settings.about') + '</div><div class="settings-row-sub">' + t('settings.aboutDesc') + '</div></div><span class="settings-value">v' + CONFIG.APP.version + '</span></div>' +
+    settingsLinkRow({ icon:'shield', title:t('settings.privacy'), sub:t('settings.privacyDesc'), nav:'privacy' }) +
+    settingsLinkRow({ icon:'help', title:t('settings.help'), sub:t('settings.helpDesc'), nav:'help' }) +
+    settingsLinkRow({ icon:'info', title:t('settings.about'), sub:t('settings.aboutDesc'), nav:'about', value:'v' + CONFIG.APP.version }) +
     '<button class="settings-row" type="button" data-action="sign-out"><div class="tile" style="background:var(--danger-bg);color:var(--danger)">' + icon('logout', 20) + '</div><div class="settings-row-body"><div class="settings-row-title" style="color:var(--danger)">' + t('profile.logout') + '</div></div></button>' +
   '</div>';
 
@@ -3032,6 +3168,34 @@ function renderNotifications(){
   return '<div class="topbar"><button class="topbar-back" data-action="back" aria-label="' + t('ui.back') + '"><span class="dir-flip" style="display:inline-flex">' + icon('back', 20) + '</span></button><span class="topbar-title">' + t('ui.notifications') + '</span><button class="topbar-action" data-action="mark-notifs" aria-label="' + t('ui.markRead') + '">' + icon('check', 18) + '</button></div>' +
     '<div class="screen-body" style="padding-top:0">' +
       (list.length ? '<div class="glass" style="padding:calc(6px*var(--ui)) calc(18px*var(--ui))">' + list.map(n => '<div class="item" style="cursor:default"><div class="tile">' + icon('bell', 20) + '</div><div class="item-body"><div class="item-title">' + escapeHtml(n.title) + '</div><div class="item-sub" style="white-space:normal">' + escapeHtml(n.message) + '</div><div class="caption" style="margin-top:calc(4px*var(--ui))">' + escapeHtml(timeAgo(n.createdAt)) + '</div></div></div>').join('') + '</div>' : '<div class="empty">' + icon('bell', 56) + '</div>') +
+    '</div>';
+}
+function infoScreenTop(titleKey){
+  return '<div class="topbar"><button class="topbar-back" data-action="back" aria-label="' + t('ui.back') + '"><span class="dir-flip" style="display:inline-flex">' + icon('back', 20) + '</span></button><span class="topbar-title">' + t(titleKey) + '</span><span style="width:calc(44px*var(--ui))"></span></div>';
+}
+function renderPrivacy(){
+  const blocks = [1, 2, 3].map(n =>
+    '<div class="glass" style="padding:var(--sp-5)"><div class="settings-row-title" style="margin-bottom:calc(6px*var(--ui))">' + t('privacy.p' + n + 't') + '</div>' +
+    '<div class="settings-row-sub" style="line-height:1.6">' + t('privacy.p' + n) + '</div></div>').join('');
+  return infoScreenTop('privacy.title') +
+    '<div class="screen-body" style="padding-top:var(--sp-2)"><p class="caption" style="line-height:1.6">' + t('privacy.intro') + '</p>' + blocks + '<div style="height:var(--sp-6)"></div></div>';
+}
+function renderHelp(){
+  const faq = [1, 2, 3].map(n =>
+    '<details class="glass faq-item"><summary>' + t('help.q' + n) + '<span class="faq-chev">' + icon('chev', 16) + '</span></summary><div class="faq-a">' + t('help.a' + n) + '</div></details>').join('');
+  const email = 'yordigitalefinance@gmail.com';
+  return infoScreenTop('help.title') +
+    '<div class="screen-body" style="padding-top:var(--sp-2)"><p class="caption" style="line-height:1.6">' + t('help.intro') + '</p>' + faq +
+    '<a class="btn btn-primary" href="mailto:' + email + '" style="text-decoration:none;margin-top:var(--sp-2)">' + icon('mail', 18) + '<span>' + t('help.contact') + '</span></a>' +
+    '<div class="caption" style="text-align:center">' + t('help.contactDesc') + ' <span class="ltr">' + email + '</span></div>' +
+    '<div style="height:var(--sp-6)"></div></div>';
+}
+function renderAbout(){
+  return infoScreenTop('about.title') +
+    '<div class="screen-body" style="padding-top:var(--sp-2);align-items:center;text-align:center">' +
+      '<div style="margin:var(--sp-6) 0 var(--sp-4)">' + logoLockup(64) + '</div>' +
+      '<div class="glass" style="padding:var(--sp-5);width:100%"><div class="settings-row-sub">' + t('about.version') + '</div><div class="settings-row-title ltr" style="font-family:var(--font-mono)">v' + CONFIG.APP.version + '</div></div>' +
+      '<p class="caption" style="line-height:1.6">' + t('about.company') + '</p><p class="caption">' + t('about.rights') + '</p>' +
     '</div>';
 }
 function renderDevices(){
@@ -3431,7 +3595,7 @@ R.register({
   login: renderLogin, signup: renderSignup, reset: renderReset,
   home: renderHome, history: renderHistory, cards: renderCards, 'cards-add': renderCardsAdd,
   profile: renderProfile, settings: renderSettings, notifications: renderNotifications, 'contact-add': renderContactAdd,
-  devices: renderDevices, sessions: renderSessions,
+  devices: renderDevices, sessions: renderSessions, privacy: renderPrivacy, help: renderHelp, about: renderAbout,
   'country-select': renderCountrySelect, 'service-select': renderServiceSelect, 'identifier-input': renderIdentifierInput,
   'tx-amount': renderTxAmount, 'tx-review': renderTxReview, processing: renderProcessing, receipt: renderReceipt,
   crypto: renderCryptoPortfolio, 'crypto-market': renderCryptoMarket, 'crypto-networks': renderCryptoNetworks,
@@ -3710,13 +3874,16 @@ function wire(id){
       else if (n === 'settings') R.go('settings');
       else if (n === 'devices') R.go('devices');
       else if (n === 'sessions') R.go('sessions');
+      else if (n === 'privacy') R.go('privacy');
+      else if (n === 'help') R.go('help');
+      else if (n === 'about') R.go('about');
       else if (n === 'country-select'){ txReset(); R.go('country-select'); }
       else if (n === 'crypto') R.go('crypto');
       else if (n === 'crypto-market') R.go('crypto-market');
       else if (n === 'crypto-networks') R.go('crypto-networks');
-      else if (n === 'crypto-buy'){ if (blockUnsupported()) return; CRYPTO_FLOW.fromMain = { asset:null, fiatAmount:0, cryptoAmount:0, rate:0, fee:0 }; R.go('crypto-buy'); }
-      else if (n === 'crypto-sell'){ if (blockUnsupported()) return; CRYPTO_FLOW.sell = { asset:null, amount:0 }; R.go('crypto-sell'); }
-      else if (n === 'crypto-swap'){ if (blockUnsupported()) return; CRYPTO_FLOW.swap = { fromAsset:null, toAsset:null, amount:0 }; R.go('crypto-swap'); }
+      else if (n === 'crypto-buy'){ CRYPTO_FLOW.fromMain = { asset:null, fiatAmount:0, cryptoAmount:0, rate:0, fee:0 }; R.go('crypto-buy'); }
+      else if (n === 'crypto-sell'){ CRYPTO_FLOW.sell = { asset:null, amount:0 }; R.go('crypto-sell'); }
+      else if (n === 'crypto-swap'){ CRYPTO_FLOW.swap = { fromAsset:null, toAsset:null, amount:0 }; R.go('crypto-swap'); }
       else if (n === 'crypto-send'){ if (blockUnsupported()) return; CRYPTO_FLOW.send = { asset:null, network:null, address:null, memo:null, amount:0 }; R.go('crypto-send'); }
       else if (n === 'crypto-receive'){ if (blockUnsupported()) return; CRYPTO_FLOW.receive = { asset:null, network:null }; R.go('crypto-receive'); }
       else if (n === 'crypto-to-bank'){ if (blockUnsupported()) return; R.go('crypto-to-bank'); }
@@ -3743,8 +3910,7 @@ function wire(id){
   if (id === 'service-select'){
     _wireRoot.querySelectorAll('[data-svc]').forEach(el => {
       el.onclick = () => {
-        if (el.getAttribute('data-svc') !== 'yor_internal'){ blockUnsupported(); return; }
-        TX_STATE.serviceId = el.getAttribute('data-svc');
+                TX_STATE.serviceId = el.getAttribute('data-svc');
         setTimeout(() => R.go('identifier-input'), 180);
       };
     });
@@ -3822,6 +3988,8 @@ function wire(id){
       next.onclick = () => {
         const value = r.value.replace(/\D/g, '') + ' / ' + a.value.replace(/\D/g, '');
         TX_STATE.beneficiary = { uid:null, id:null, name:null, phone: value, identifierType: idType, identifierValue: value };
+        const bx = readBenExtra(); if (!bx) return;
+        Object.assign(TX_STATE.beneficiary, bx, { name: (bx.firstName + ' ' + bx.lastName).trim() });
         TX_STATE.provider = { id: svc.id, name: svc.name[LANG] || svc.name.en, kind:'bank' };
         R.go('tx-amount');
       };
@@ -3857,6 +4025,8 @@ function wire(id){
       }, 480);
     };
     next.onclick = () => {
+      const bx = readBenExtra(); if (!bx) return;
+      Object.assign(TX_STATE.beneficiary, bx, { name: (bx.firstName + ' ' + bx.lastName).trim() });
       TX_STATE.provider = { id: svc.id, name: svc.name[LANG] || svc.name.en, kind:'local' };
       R.go('tx-amount');
     };
@@ -3924,7 +4094,6 @@ function wire(id){
     let _txConfirmed = false; const _idemKey = uuid();
     async function confirmAndProceed(){
       if (_txConfirmed) return;
-      if (!(TX_STATE.provider && TX_STATE.provider.id === 'yor_internal')){ blockUnsupported(); return; }
       if (!ProcessingEngine.acquireLock()) return;
       _txConfirmed = true;
       UIKit.loading(kbBtn, true);
@@ -3952,32 +4121,24 @@ function wire(id){
               network: 'YOR WALLET', reference: res.data.reference, createdAt: Date.now()
             };
           } else {
-            const txId = ID.transaction();
-            const reference = ID.reference();
-            const tx = {
-              id: txId, reference, type:'TRANSFER', direction:'OUT', status:'SUCCESS',
-              amount: TX_STATE.breakdown.amount, currency: 'OMR',
-              fee: TX_STATE.breakdown.fee, vat: TX_STATE.breakdown.vat, total: TX_STATE.breakdown.total,
-              destinationCurrency: (TX_STATE.country && (TX_STATE.country.cur || TX_STATE.country.currency)) || 'OMR',
-              destinationAmount: TX_STATE.fx ? TX_STATE.fx.amount : null,
-              exchangeRate: TX_STATE.fx ? TX_STATE.fx.rate : null,
-              beneficiary: {
-                name: TX_STATE.beneficiary.name || TX_STATE.beneficiary.phone,
-                phone: TX_STATE.beneficiary.phone,
-                country: TX_STATE.country && TX_STATE.country.iso,
-                networkName: TX_STATE.provider ? TX_STATE.provider.name : null
-              },
-              network: TX_STATE.provider ? TX_STATE.provider.name : null,
-              createdAt: Date.now()
-            };
-            await recordLocalTransaction(tx);
+            const b = TX_STATE.beneficiary;
+            const iso = TX_STATE.country && TX_STATE.country.iso;
+            const res = await TransferEngine.sendExternal({
+              amount: TX_STATE.breakdown.amount,
+              destCurrency: (TX_STATE.country && (TX_STATE.country.cur || TX_STATE.country.currency)) || 'OMR',
+              provider: TX_STATE.provider ? TX_STATE.provider.name : '',
+              beneficiary: { firstName: b.firstName, lastName: b.lastName, phone: b.phone, country: iso, nationality: b.nationality },
+              idemKey: _idemKey
+            });
+            if (!res.ok){ toast(t(res.error), 'error'); R.go('home'); return; }
+            const sv = res.data;
+            /* receipt comes from the server transaction; nationality is deliberately NOT included */
             receipt = {
-              id: ID.receipt(), transactionId: tx.id, status:'SUCCESS',
-              amount: TX_STATE.breakdown.amount, currency: 'OMR',
-              fee: TX_STATE.breakdown.fee, vat: TX_STATE.breakdown.vat, total: TX_STATE.breakdown.total,
-              destinationAmount: tx.destinationAmount, destinationCurrency: tx.destinationCurrency,
-              exchangeRate: tx.exchangeRate,
-              beneficiary: tx.beneficiary, network: tx.network, reference, createdAt: Date.now()
+              id: ID.receipt(), transactionId: sv.transactionId, status: 'SUCCESS',
+              amount: sv.amount, currency: 'OMR', fee: sv.fee, vat: sv.vat, total: sv.total,
+              destinationAmount: sv.destinationAmount, destinationCurrency: sv.destinationCurrency, exchangeRate: sv.exchangeRate,
+              beneficiary: { name: b.name, phone: b.phone, country: iso, networkName: TX_STATE.provider ? TX_STATE.provider.name : null },
+              network: TX_STATE.provider ? TX_STATE.provider.name : null, reference: sv.reference, createdAt: Date.now()
             };
           }
           await recordLocalReceipt(receipt);
@@ -4036,7 +4197,7 @@ function wire(id){
     const aid = CRYPTO_FLOW.fromMain.asset;
     const asset = CRYPTO_ASSETS.find(a => a.id === aid);
     const priceUSD = asset ? CryptoMarketEngine.price(asset.symbol) : 1;
-    const priceOMR = priceUSD / 0.385;
+    const priceOMR = priceUSD / (FX_RATES.USD || 2.6008);   /* OMR per 1 crypto unit */
     const main = mainAccount();
     const input = document.getElementById('buy-fiat');
     const preview = document.getElementById('buy-preview');
@@ -4048,10 +4209,9 @@ function wire(id){
       if (v <= 0){ preview.innerHTML = ''; return; }
       if (v < 0.1){ err.textContent = t('errors.MINIMUM_AMOUNT'); return; }
       if (v > main.availableBalance){ err.textContent = t('errors.INSUFFICIENT_BALANCE'); return; }
-      const feeUSD = FeeEngine.cryptoTrade(v / 0.385 * priceUSD);
-      const cryptoGross = priceOMR > 0 ? v / priceOMR : 0;
-      const fee = priceOMR > 0 ? feeUSD / priceUSD * priceOMR : 0;
-      const cryptoNet = Math.max(0, cryptoGross - fee);
+      /* fee is a % of the OMR spent; crypto received = (spend - fee) / price. Server result is authoritative. */
+      const fee = Math.round(v * CONFIG.FEES.CRYPTO_TRADE_PCT * 1000) / 1000;
+      const cryptoNet = priceOMR > 0 ? Math.max(0, (v - fee) / priceOMR) : 0;
       preview.innerHTML = '<div class="glass-subtle" style="padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center">' +
         '<div><div class="caption">' + t('crypto.youGet') + '</div><div style="font-weight:700;margin-top:calc(4px*var(--ui))">' + CurrencyEngine.formatCrypto(cryptoNet, asset.symbol) + '</div></div>' +
         '<div style="text-align:end"><div class="caption">' + t('crypto.fee') + '</div><div style="font-size:calc(13px*var(--ui));margin-top:calc(4px*var(--ui))">' + CurrencyEngine.format(fee, 'OMR') + '</div></div></div>';
@@ -4073,7 +4233,7 @@ function wire(id){
     const asset = CRYPTO_ASSETS.find(a => a.id === aid);
     const wallet = Runtime.wallets.find(w => w.assetId === aid || w.symbol === asset.symbol);
     const priceUSD = asset ? CryptoMarketEngine.price(asset.symbol) : 1;
-    const priceOMR = priceUSD / 0.385;
+    const priceOMR = priceUSD / (FX_RATES.USD || 2.6008);
     const input = document.getElementById('sell-amt');
     const preview = document.getElementById('sell-preview');
     const err = document.getElementById('sell-err');
@@ -4085,7 +4245,7 @@ function wire(id){
       const avail = wallet ? Number(wallet.balance) : 0;
       if (v > avail){ err.textContent = t('errors.INSUFFICIENT_BALANCE'); return; }
       const grossOMR = v * priceOMR;
-      const feeOMR = FeeEngine.cryptoTrade(grossOMR / 0.385) * 0.385;
+      const feeOMR = Math.round(grossOMR * CONFIG.FEES.CRYPTO_TRADE_PCT * 1000) / 1000;
       const netOMR = Math.max(0, grossOMR - feeOMR);
       preview.innerHTML = '<div class="glass-subtle" style="padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center">' +
         '<div><div class="caption">' + t('crypto.fiatReceive') + '</div><div style="font-weight:700;margin-top:calc(4px*var(--ui))">' + CurrencyEngine.format(netOMR, 'OMR') + '</div></div>' +
@@ -4219,7 +4379,7 @@ function wire(id){
     let dragging = false, startX = 0, dx = 0, maxX = 0, midHapticDone = false;
     let _cryptoConfirmed = false;
     async function cryptoConfirm(){
-      if (blockUnsupported()) return;
+      if (!CRYPTO_FLOW.pending || ['BUY','SELL','SWAP'].indexOf(CRYPTO_FLOW.pending.kind) === -1){ blockUnsupported(); return; }
       if (_cryptoConfirmed) return;
       if (!ProcessingEngine.acquireLock()) return;
       _cryptoConfirmed = true;
@@ -4227,44 +4387,54 @@ function wire(id){
       thumb.classList.add('success');
       UIKit.haptic('success');
       const p = CRYPTO_FLOW.pending;
+      const buyIdem = p.idemKey || (p.idemKey = uuid());   /* one key per review: retries replay the same request */
       R.go('processing');
       ProcessingEngine.start(async () => {
         try {
           const d = p.data;
-          const txId = ID.transaction();
-          const reference = ID.reference();
-          const tx = {
-            id: txId, reference,
-            type: p.kind === 'BUY' ? 'CRYPTO_BUY' : p.kind === 'SELL' ? 'CRYPTO_SELL' : p.kind === 'SWAP' ? 'CRYPTO_SWAP' : 'CRYPTO_SEND',
-            direction: 'OUT', status: 'SUCCESS',
-            asset: d.symbol || (d.asset ? d.asset.symbol : null),
-            amount: d.amount || 0,
-            destinationAmount: d.destinationAmount || null,
-            fee: (d.fee || 0) + (d.networkFee || 0),
-            total: d.total || d.amount,
-            network: d.network || null,
-            toAddress: d.toAddress || null,
-            memo: d.memo || null,
-            createdAt: Date.now()
-          };
-          await recordLocalTransaction(tx);
-          const receipt = {
-            id: ID.receipt(), transactionId: tx.id, status: 'SUCCESS',
-            amount: d.amount, currency: d.asset ? d.asset.symbol : 'CRYPTO',
-            asset: d.asset ? d.asset.symbol : null,
-            fee: (d.fee || 0) + (d.networkFee || 0), total: d.total || d.amount,
-            beneficiary: { name: d.toAddress ? AddressEngine.short(d.toAddress) : (d.toAssetObj ? d.toAssetObj.name : (d.asset ? d.asset.name : '—')), phone: d.toAddress || null, networkName: d.network || null },
-            network: d.network || null, reference, createdAt: Date.now()
-          };
-          await recordLocalReceipt(receipt);
+          const sym = d.symbol || (d.asset && d.asset.symbol);
+          let res;
+          if (p.kind === 'BUY') res = await CryptoBuyEngine.buy({ symbol: sym, amountOMR: d.fiatAmount, idemKey: buyIdem });
+          else if (p.kind === 'SELL') res = await CryptoBuyEngine.sell({ symbol: sym, amount: d.amount, idemKey: buyIdem });
+          else res = await CryptoBuyEngine.swap({ from: sym, to: d.toAssetObj && d.toAssetObj.symbol, amount: d.amount, idemKey: buyIdem });
+          if (!res.ok){
+            toast(t(res.error || 'errors.UNKNOWN_ERROR'), 'error');
+            R.go('crypto');
+            return;
+          }
+          const row = res.data || {};
+          const ref = row.reference || ID.reference();
+          const txId = row.transaction_id || ID.transaction();
+          const name = d.asset ? d.asset.name : sym;
+          let receipt, shown;
+          if (p.kind === 'BUY'){
+            const got = Number(row.amount != null ? row.amount : d.amount);
+            shown = CurrencyEngine.formatCrypto(got, sym);
+            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: got, currency:'OMR', asset: sym,
+              fee: Number(row.fee != null ? row.fee : d.fee), total: Number(d.fiatAmount), costOMR: true,
+              beneficiary: { name, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
+          } else if (p.kind === 'SELL'){
+            const got = Number(row.fiat_received != null ? row.fiat_received : d.fiatReceived);
+            shown = CurrencyEngine.format(got, 'OMR');
+            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: Number(row.amount != null ? row.amount : d.amount), currency:'OMR', asset: sym,
+              fee: Number(row.fee != null ? row.fee : d.fee), total: got, costOMR: true,
+              beneficiary: { name, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
+          } else {
+            const to = d.toAssetObj ? d.toAssetObj.symbol : '';
+            const got = Number(row.destination_amount != null ? row.destination_amount : d.destinationAmount);
+            const amt = Number(row.amount != null ? row.amount : d.amount);
+            shown = CurrencyEngine.formatCrypto(got, to);
+            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: amt, currency: sym, asset: sym,
+              fee: Number(row.fee != null ? row.fee : d.fee), total: amt,
+              destinationAmount: got, destinationCurrency: to, exchangeRate: amt > 0 ? got / amt : null,
+              beneficiary: { name: d.toAssetObj ? d.toAssetObj.name : to, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
+          }
+          try { await recordLocalReceipt(receipt); } catch(e){ console.error(e); }
           resetCryptoFlow();
-          InAppNotif.showCall({ title: t('notif.fiat_sent'), message: receipt.beneficiary.name, amount: CurrencyEngine.formatCrypto(d.amount, (d.asset || {}).symbol || ''), status:'success' });
+          InAppNotif.showCall({ title: t(p.kind === 'BUY' ? 'crypto.reviewBuy' : p.kind === 'SELL' ? 'crypto.reviewSell' : 'crypto.reviewSwap'), message: name, amount: shown, status:'success' });
           R.go('receipt');
-        } catch(e){
-          console.error(e);
-          toast(t('errors.UNKNOWN_ERROR'), 'error');
-          R.go('crypto');
-        }
+          return;
+        } catch(e){ console.error(e); toast(t('errors.UNKNOWN_ERROR'), 'error'); R.go('crypto'); return; }
       });
     }
     if (kbBtn) kbBtn.onclick = cryptoConfirm;
@@ -4373,7 +4543,7 @@ function wire(id){
     if (!asset || !acc){ R.go('crypto-to-bank'); return; }
     const priceUSD = CryptoMarketEngine.price(asset.symbol);
     const FX = FX_RATES[acc.currency] || 1;
-    const priceInCurr = priceUSD / 0.385 * (1 / (FX_RATES['USD'] || 1)) * FX;
+    const priceInCurr = (priceUSD / (FX_RATES.USD || 2.6008)) * FX;
     const wallet = Runtime.wallets.find(w => (w.assetId === f.asset || w.symbol === asset.symbol) && w.network === f.network);
     const avail = wallet ? Number(wallet.balance) : 0;
     const amtInput = document.getElementById('tobank-amount');
@@ -4968,7 +5138,7 @@ function boot(){
       setTimeout(() => {
         const sp = document.getElementById('splash');
         if (sp){ sp.classList.add('is-hidden'); setTimeout(() => { sp.style.display = 'none'; }, 600); }
-        LANG = (Runtime.settings && Runtime.settings.language) || 'en';
+        LANG = (Runtime.settings && Runtime.settings.language) || 'fr';
         applyI18n();
         applyTheme((Runtime.settings && Runtime.settings.theme) || 'dark');
         renderSidebar();
@@ -4978,13 +5148,16 @@ function boot(){
       return;
     }
     if (signedIn){
-      LANG = (Runtime.settings && Runtime.settings.language) || 'en';
+      LANG = (Runtime.settings && Runtime.settings.language) || 'fr';
       applyI18n();
       applyTheme((Runtime.settings && Runtime.settings.theme) || 'dark');
       renderSidebar();
       R.go('home', { reset:true, force:true });
     } else {
       resetRuntime();
+      LANG = 'fr';                 /* nothing from the previous user survives on the login screen */
+      applyI18n();
+      applyTheme('dark');
       renderSidebar();
       R.go('login', { reset:true, force:true });
     }
