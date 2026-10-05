@@ -2268,45 +2268,6 @@ function blockUnsupported(){
   return true;
 }
 async function recordLocalTransaction(){ throw new Error('LEDGER_WRITE_FORBIDDEN'); }
-
-/* ============================================================
-   CRYPTO BUY — executed SERVER-SIDE by crypto_buy(): debits OMR, credits the wallet,
-   writes transaction + notification atomically. The client only sends (asset, OMR amount, idempotency key).
-   Signature verified on the database: crypto_buy(p_asset text, p_fiat_amount numeric, p_idempotency_key text) -> jsonb
-   { ok, transaction_id, reference, asset, amount, fee, fiat_amount, rate }.
-   ============================================================ */
-const CryptoBuyEngine = (() => {
-  const inflight = new Set();
-  /* Generic server call. Every money movement is done by the SQL function; the client sends only intent + idempotency key. */
-  async function call(fn, args, idemKey){
-    if (!supabaseReady) return { ok:false, error:'errors.UNKNOWN_ERROR' };
-    const idem = idemKey || uuid();
-    if (inflight.has(idem)) return { ok:false, error:'errors.DUPLICATE' };
-    inflight.add(idem);
-    try {
-      const { data, error } = await sb.rpc(fn, Object.assign({}, args, { p_idempotency_key: idem }));
-      if (error){
-        const m = String(error.message || '').toLowerCase();
-        if (m.includes('insufficient')) return { ok:false, error:'errors.INSUFFICIENT_BALANCE' };
-        console.error(fn, error);
-        return { ok:false, error:'errors.UNKNOWN_ERROR' };
-      }
-      const row = Array.isArray(data) ? data[0] : data;
-      if (!row) return { ok:false, error:'errors.UNKNOWN_ERROR' };
-      try { await AuthEngine.hydrateRuntime(); } catch(e){}
-      return { ok:true, data:row };
-    } catch(e){
-      console.error(e);
-      return { ok:false, error:'errors.UNKNOWN_ERROR' };
-    } finally { setTimeout(() => inflight.delete(idem), 1500); }
-  }
-  /* Signatures verified on the database (all return jsonb with ok, transaction_id, reference, ...):
-     crypto_buy(p_asset, p_fiat_amount, key)  crypto_sell(p_asset, p_amount, key)  crypto_swap(p_from, p_to, p_amount, key) */
-  const buy  = ({ symbol, amountOMR, idemKey }) => call('crypto_buy',  { p_asset: String(symbol).toUpperCase(), p_fiat_amount: Number(amountOMR) }, idemKey);
-  const sell = ({ symbol, amount, idemKey })    => call('crypto_sell', { p_asset: String(symbol).toUpperCase(), p_amount: Number(amount) }, idemKey);
-  const swap = ({ from, to, amount, idemKey })  => call('crypto_swap', { p_from: String(from).toUpperCase(), p_to: String(to).toUpperCase(), p_amount: Number(amount) }, idemKey);
-  return { buy, sell, swap };
-})();
 async function recordLocalReceipt(rc){
   const uid = UserContext.requireCtx().uid;
   const id = rc.id || ID.receipt();
@@ -2886,10 +2847,9 @@ function renderReceipt(){
   const cName = country ? (country[LANG] || country.en) : (r.beneficiary && r.beneficiary.networkName) ? r.beneficiary.networkName : (r.network || '—');
   const masked = ContactsEngine.mask(r.beneficiary && r.beneficiary.name);
   const amtFmt = isCrypto ? CurrencyEngine.formatCrypto(r.amount, r.asset) : CurrencyEngine.format(r.amount, r.currency || 'OMR');
-  const costInOMR = !!(r.costOMR && isCrypto);   /* crypto BUY: fee and total are paid in OMR */
-  const feeFmt = (isCrypto && !costInOMR) ? CurrencyEngine.formatCrypto(r.fee || 0, r.asset) : CurrencyEngine.format(r.fee || 0, costInOMR ? 'OMR' : (r.currency || 'OMR'));
+  const feeFmt = isCrypto ? CurrencyEngine.formatCrypto(r.fee || 0, r.asset) : CurrencyEngine.format(r.fee || 0, r.currency || 'OMR');
   const vatFmt = r.vat ? CurrencyEngine.format(r.vat, r.currency || 'OMR') : null;
-  const totalFmt = (isCrypto && !costInOMR) ? CurrencyEngine.formatCrypto(r.total, r.asset) : CurrencyEngine.format(r.total, costInOMR ? 'OMR' : (r.currency || 'OMR'));
+  const totalFmt = isCrypto ? CurrencyEngine.formatCrypto(r.total, r.asset) : CurrencyEngine.format(r.total, r.currency || 'OMR');
   const destFmt = r.destinationAmount != null ? CurrencyEngine.format(r.destinationAmount, r.destinationCurrency || (country ? country.cur : 'OMR')) : null;
   window.__YOR_LAST_RECEIPT__ = r;
   return '<div class="receipt-view">' +
@@ -3881,9 +3841,9 @@ function wire(id){
       else if (n === 'crypto') R.go('crypto');
       else if (n === 'crypto-market') R.go('crypto-market');
       else if (n === 'crypto-networks') R.go('crypto-networks');
-      else if (n === 'crypto-buy'){ CRYPTO_FLOW.fromMain = { asset:null, fiatAmount:0, cryptoAmount:0, rate:0, fee:0 }; R.go('crypto-buy'); }
-      else if (n === 'crypto-sell'){ CRYPTO_FLOW.sell = { asset:null, amount:0 }; R.go('crypto-sell'); }
-      else if (n === 'crypto-swap'){ CRYPTO_FLOW.swap = { fromAsset:null, toAsset:null, amount:0 }; R.go('crypto-swap'); }
+      else if (n === 'crypto-buy'){ if (blockUnsupported()) return; CRYPTO_FLOW.fromMain = { asset:null, fiatAmount:0, cryptoAmount:0, rate:0, fee:0 }; R.go('crypto-buy'); }
+      else if (n === 'crypto-sell'){ if (blockUnsupported()) return; CRYPTO_FLOW.sell = { asset:null, amount:0 }; R.go('crypto-sell'); }
+      else if (n === 'crypto-swap'){ if (blockUnsupported()) return; CRYPTO_FLOW.swap = { fromAsset:null, toAsset:null, amount:0 }; R.go('crypto-swap'); }
       else if (n === 'crypto-send'){ if (blockUnsupported()) return; CRYPTO_FLOW.send = { asset:null, network:null, address:null, memo:null, amount:0 }; R.go('crypto-send'); }
       else if (n === 'crypto-receive'){ if (blockUnsupported()) return; CRYPTO_FLOW.receive = { asset:null, network:null }; R.go('crypto-receive'); }
       else if (n === 'crypto-to-bank'){ if (blockUnsupported()) return; R.go('crypto-to-bank'); }
@@ -4197,7 +4157,7 @@ function wire(id){
     const aid = CRYPTO_FLOW.fromMain.asset;
     const asset = CRYPTO_ASSETS.find(a => a.id === aid);
     const priceUSD = asset ? CryptoMarketEngine.price(asset.symbol) : 1;
-    const priceOMR = priceUSD / (FX_RATES.USD || 2.6008);   /* OMR per 1 crypto unit */
+    const priceOMR = priceUSD / 0.385;
     const main = mainAccount();
     const input = document.getElementById('buy-fiat');
     const preview = document.getElementById('buy-preview');
@@ -4209,9 +4169,10 @@ function wire(id){
       if (v <= 0){ preview.innerHTML = ''; return; }
       if (v < 0.1){ err.textContent = t('errors.MINIMUM_AMOUNT'); return; }
       if (v > main.availableBalance){ err.textContent = t('errors.INSUFFICIENT_BALANCE'); return; }
-      /* fee is a % of the OMR spent; crypto received = (spend - fee) / price. Server result is authoritative. */
-      const fee = Math.round(v * CONFIG.FEES.CRYPTO_TRADE_PCT * 1000) / 1000;
-      const cryptoNet = priceOMR > 0 ? Math.max(0, (v - fee) / priceOMR) : 0;
+      const feeUSD = FeeEngine.cryptoTrade(v / 0.385 * priceUSD);
+      const cryptoGross = priceOMR > 0 ? v / priceOMR : 0;
+      const fee = priceOMR > 0 ? feeUSD / priceUSD * priceOMR : 0;
+      const cryptoNet = Math.max(0, cryptoGross - fee);
       preview.innerHTML = '<div class="glass-subtle" style="padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center">' +
         '<div><div class="caption">' + t('crypto.youGet') + '</div><div style="font-weight:700;margin-top:calc(4px*var(--ui))">' + CurrencyEngine.formatCrypto(cryptoNet, asset.symbol) + '</div></div>' +
         '<div style="text-align:end"><div class="caption">' + t('crypto.fee') + '</div><div style="font-size:calc(13px*var(--ui));margin-top:calc(4px*var(--ui))">' + CurrencyEngine.format(fee, 'OMR') + '</div></div></div>';
@@ -4233,7 +4194,7 @@ function wire(id){
     const asset = CRYPTO_ASSETS.find(a => a.id === aid);
     const wallet = Runtime.wallets.find(w => w.assetId === aid || w.symbol === asset.symbol);
     const priceUSD = asset ? CryptoMarketEngine.price(asset.symbol) : 1;
-    const priceOMR = priceUSD / (FX_RATES.USD || 2.6008);
+    const priceOMR = priceUSD / 0.385;
     const input = document.getElementById('sell-amt');
     const preview = document.getElementById('sell-preview');
     const err = document.getElementById('sell-err');
@@ -4245,7 +4206,7 @@ function wire(id){
       const avail = wallet ? Number(wallet.balance) : 0;
       if (v > avail){ err.textContent = t('errors.INSUFFICIENT_BALANCE'); return; }
       const grossOMR = v * priceOMR;
-      const feeOMR = Math.round(grossOMR * CONFIG.FEES.CRYPTO_TRADE_PCT * 1000) / 1000;
+      const feeOMR = FeeEngine.cryptoTrade(grossOMR / 0.385) * 0.385;
       const netOMR = Math.max(0, grossOMR - feeOMR);
       preview.innerHTML = '<div class="glass-subtle" style="padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);display:flex;justify-content:space-between;align-items:center">' +
         '<div><div class="caption">' + t('crypto.fiatReceive') + '</div><div style="font-weight:700;margin-top:calc(4px*var(--ui))">' + CurrencyEngine.format(netOMR, 'OMR') + '</div></div>' +
@@ -4379,7 +4340,7 @@ function wire(id){
     let dragging = false, startX = 0, dx = 0, maxX = 0, midHapticDone = false;
     let _cryptoConfirmed = false;
     async function cryptoConfirm(){
-      if (!CRYPTO_FLOW.pending || ['BUY','SELL','SWAP'].indexOf(CRYPTO_FLOW.pending.kind) === -1){ blockUnsupported(); return; }
+      if (blockUnsupported()) return;
       if (_cryptoConfirmed) return;
       if (!ProcessingEngine.acquireLock()) return;
       _cryptoConfirmed = true;
@@ -4387,54 +4348,44 @@ function wire(id){
       thumb.classList.add('success');
       UIKit.haptic('success');
       const p = CRYPTO_FLOW.pending;
-      const buyIdem = p.idemKey || (p.idemKey = uuid());   /* one key per review: retries replay the same request */
       R.go('processing');
       ProcessingEngine.start(async () => {
         try {
           const d = p.data;
-          const sym = d.symbol || (d.asset && d.asset.symbol);
-          let res;
-          if (p.kind === 'BUY') res = await CryptoBuyEngine.buy({ symbol: sym, amountOMR: d.fiatAmount, idemKey: buyIdem });
-          else if (p.kind === 'SELL') res = await CryptoBuyEngine.sell({ symbol: sym, amount: d.amount, idemKey: buyIdem });
-          else res = await CryptoBuyEngine.swap({ from: sym, to: d.toAssetObj && d.toAssetObj.symbol, amount: d.amount, idemKey: buyIdem });
-          if (!res.ok){
-            toast(t(res.error || 'errors.UNKNOWN_ERROR'), 'error');
-            R.go('crypto');
-            return;
-          }
-          const row = res.data || {};
-          const ref = row.reference || ID.reference();
-          const txId = row.transaction_id || ID.transaction();
-          const name = d.asset ? d.asset.name : sym;
-          let receipt, shown;
-          if (p.kind === 'BUY'){
-            const got = Number(row.amount != null ? row.amount : d.amount);
-            shown = CurrencyEngine.formatCrypto(got, sym);
-            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: got, currency:'OMR', asset: sym,
-              fee: Number(row.fee != null ? row.fee : d.fee), total: Number(d.fiatAmount), costOMR: true,
-              beneficiary: { name, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
-          } else if (p.kind === 'SELL'){
-            const got = Number(row.fiat_received != null ? row.fiat_received : d.fiatReceived);
-            shown = CurrencyEngine.format(got, 'OMR');
-            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: Number(row.amount != null ? row.amount : d.amount), currency:'OMR', asset: sym,
-              fee: Number(row.fee != null ? row.fee : d.fee), total: got, costOMR: true,
-              beneficiary: { name, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
-          } else {
-            const to = d.toAssetObj ? d.toAssetObj.symbol : '';
-            const got = Number(row.destination_amount != null ? row.destination_amount : d.destinationAmount);
-            const amt = Number(row.amount != null ? row.amount : d.amount);
-            shown = CurrencyEngine.formatCrypto(got, to);
-            receipt = { id: ID.receipt(), transactionId: txId, status:'SUCCESS', amount: amt, currency: sym, asset: sym,
-              fee: Number(row.fee != null ? row.fee : d.fee), total: amt,
-              destinationAmount: got, destinationCurrency: to, exchangeRate: amt > 0 ? got / amt : null,
-              beneficiary: { name: d.toAssetObj ? d.toAssetObj.name : to, networkName:'YOR WALLET' }, network:'YOR WALLET', reference: ref, createdAt: Date.now() };
-          }
-          try { await recordLocalReceipt(receipt); } catch(e){ console.error(e); }
+          const txId = ID.transaction();
+          const reference = ID.reference();
+          const tx = {
+            id: txId, reference,
+            type: p.kind === 'BUY' ? 'CRYPTO_BUY' : p.kind === 'SELL' ? 'CRYPTO_SELL' : p.kind === 'SWAP' ? 'CRYPTO_SWAP' : 'CRYPTO_SEND',
+            direction: 'OUT', status: 'SUCCESS',
+            asset: d.symbol || (d.asset ? d.asset.symbol : null),
+            amount: d.amount || 0,
+            destinationAmount: d.destinationAmount || null,
+            fee: (d.fee || 0) + (d.networkFee || 0),
+            total: d.total || d.amount,
+            network: d.network || null,
+            toAddress: d.toAddress || null,
+            memo: d.memo || null,
+            createdAt: Date.now()
+          };
+          await recordLocalTransaction(tx);
+          const receipt = {
+            id: ID.receipt(), transactionId: tx.id, status: 'SUCCESS',
+            amount: d.amount, currency: d.asset ? d.asset.symbol : 'CRYPTO',
+            asset: d.asset ? d.asset.symbol : null,
+            fee: (d.fee || 0) + (d.networkFee || 0), total: d.total || d.amount,
+            beneficiary: { name: d.toAddress ? AddressEngine.short(d.toAddress) : (d.toAssetObj ? d.toAssetObj.name : (d.asset ? d.asset.name : '—')), phone: d.toAddress || null, networkName: d.network || null },
+            network: d.network || null, reference, createdAt: Date.now()
+          };
+          await recordLocalReceipt(receipt);
           resetCryptoFlow();
-          InAppNotif.showCall({ title: t(p.kind === 'BUY' ? 'crypto.reviewBuy' : p.kind === 'SELL' ? 'crypto.reviewSell' : 'crypto.reviewSwap'), message: name, amount: shown, status:'success' });
+          InAppNotif.showCall({ title: t('notif.fiat_sent'), message: receipt.beneficiary.name, amount: CurrencyEngine.formatCrypto(d.amount, (d.asset || {}).symbol || ''), status:'success' });
           R.go('receipt');
-          return;
-        } catch(e){ console.error(e); toast(t('errors.UNKNOWN_ERROR'), 'error'); R.go('crypto'); return; }
+        } catch(e){
+          console.error(e);
+          toast(t('errors.UNKNOWN_ERROR'), 'error');
+          R.go('crypto');
+        }
       });
     }
     if (kbBtn) kbBtn.onclick = cryptoConfirm;
@@ -4543,7 +4494,7 @@ function wire(id){
     if (!asset || !acc){ R.go('crypto-to-bank'); return; }
     const priceUSD = CryptoMarketEngine.price(asset.symbol);
     const FX = FX_RATES[acc.currency] || 1;
-    const priceInCurr = (priceUSD / (FX_RATES.USD || 2.6008)) * FX;
+    const priceInCurr = priceUSD / 0.385 * (1 / (FX_RATES['USD'] || 1)) * FX;
     const wallet = Runtime.wallets.find(w => (w.assetId === f.asset || w.symbol === asset.symbol) && w.network === f.network);
     const avail = wallet ? Number(wallet.balance) : 0;
     const amtInput = document.getElementById('tobank-amount');
